@@ -39,3 +39,30 @@ export const createAdmin = async (req, res) => {
         });
     }
 }
+
+export const adminLogin = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        const admin = await Admin.findOne({ email, password });
+        if (!admin) {
+            return res.status(400).send({
+                message: "email or password incorrect",
+                success: false,
+            });
+        }
+        const token = jwt.sign({ email, role: "admin" }, process.env.SECRET, { expiresIn: '1h' });
+        res.status(200).send({
+            message: "login successful",
+            success: true,
+            token,
+            admin,
+        });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).send({
+            message: "Error logging in",
+            success: false,
+            error,
+        });
+    }
+}
