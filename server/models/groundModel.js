@@ -20,6 +20,7 @@ const groundSchema = new mongoose.Schema({
         required: [true, "price is required"],
     },
     availableSlots: [String],
+    images: [String],
     bookings: [bookingSchema]
 });
 
