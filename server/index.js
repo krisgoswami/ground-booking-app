@@ -1,19 +1,19 @@
 import express from 'express';
 import cors from 'cors';
-import connectDB from './server/dbconfig/connectdb';
-import adminRoute from './server/routes/adminRoutes.js';
+import adminRoute from './routes/adminRoutes.js';
+import connectdb from './dbconfig/connectdb.js';
 
 const app = express();
 
 //connect db
-connectDB();
+connectdb();
 
 //middlewares
-app.use(cors);
+app.use(cors());
 app.use(express.json());
 
 //routes
-app.use('api/v1/admin', adminRoute);
+app.use('/api/v1/admin', adminRoute);
 
 //port
 const PORT = process.env.PORT || 8080;
