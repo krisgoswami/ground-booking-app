@@ -23,4 +23,4 @@ const groundSchema = new mongoose.Schema({
     bookings: [bookingModel]
 });
 
-export const groundModel = mongoose.model('Ground', groundSchema);
+export const Ground = mongoose.model('Ground', groundSchema);
