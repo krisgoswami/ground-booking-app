@@ -86,7 +86,8 @@ export const adminLogin = async (req, res) => {
 //*************** ground creation ***************//
 export const createGround = async (req, res) => {
     try {
-        const ground = new Ground(req.body);
+        const images = req.files.map(file => file.path);
+        const ground = new Ground({ ...req.body, images });
         await ground.save();
         res.status(200).send({
             message: "Ground creation successful",
@@ -103,3 +104,5 @@ export const createGround = async (req, res) => {
         });
     }
 }
+
+//*************** update ground details ***************//
