@@ -1,4 +1,5 @@
 import { Admin } from "../models/adminModel";
+import { Ground } from "../models/groundModel";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 
@@ -76,6 +77,27 @@ export const adminLogin = async (req, res) => {
         console.log(error);
         return res.status(500).send({
             message: "Error logging in",
+            success: false,
+            error,
+        });
+    }
+}
+
+//*************** ground creation ***************//
+export const createGround = async (req, res) => {
+    try {
+        const ground = new Ground(req.body);
+        await ground.save();
+        res.status(200).send({
+            message: "Ground creation successful",
+            success: true,
+            ground,
+            groundId: ground.id,
+        });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).send({
+            message: "error creating ground",
             success: false,
             error,
         });
