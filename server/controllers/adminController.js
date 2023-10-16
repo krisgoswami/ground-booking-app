@@ -1,5 +1,5 @@
-import { Admin } from "../models/adminModel";
-import { Ground } from "../models/groundModel";
+import { Admin } from "../models/adminModel.js";
+import { Ground } from "../models/groundModel.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 
@@ -48,7 +48,7 @@ export const createAdmin = async (req, res) => {
 export const adminLogin = async (req, res) => {
     try {
         const { email, password } = req.body;
-        const admin = await Admin.findOne({ email, password });
+        const admin = await Admin.findOne({ email });
         if (!admin) {
             return res.status(400).send({
                 message: "user not found",

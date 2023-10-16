@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { bookingModel } from "./bookingModel";
+import { bookingSchema } from "./bookingModel.js";
 
 const groundSchema = new mongoose.Schema({
     ground_name: {
@@ -20,7 +20,7 @@ const groundSchema = new mongoose.Schema({
         required: [true, "price is required"],
     },
     availableSlots: [String],
-    bookings: [bookingModel]
+    bookings: [bookingSchema]
 });
 
 export const Ground = mongoose.model('Ground', groundSchema);

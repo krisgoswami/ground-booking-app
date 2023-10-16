@@ -10,7 +10,7 @@ const connectDB = async () => {
             useUnifiedTopology: true,
             dbName: "grounds_booking",
         });
-        console.log("Database connected");
+        console.log("Database connected successfully");
     } catch (error) {
         console.log('Error connecting DB', error);
     }
