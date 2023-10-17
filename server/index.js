@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import adminRoute from './routes/adminRoutes.js';
+import userRoute from './routes/userRoutes.js';
 import connectdb from './dbconfig/connectdb.js';
 
 const app = express();
@@ -14,6 +15,7 @@ app.use(express.json());
 
 //routes
 app.use('/api/v1/admin', adminRoute);
+app.use('/api/v1/user', adminRoute);
 
 //img uploads
 app.use('uploads/', express.static('uploads'));
