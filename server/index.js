@@ -15,7 +15,7 @@ app.use(express.json());
 
 //routes
 app.use('/api/v1/admin', adminRoute);
-app.use('/api/v1/user', adminRoute);
+app.use('/api/v1/user', userRoute);
 
 //img uploads
 app.use('uploads/', express.static('uploads'));
