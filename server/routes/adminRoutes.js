@@ -1,14 +1,15 @@
 import express from "express";
-import { adminLogin, createAdmin, createGround, fetchGroundById, getAllGrounds } from "../controllers/adminController.js";
+import { adminLogin, createAdmin, createGround, fetchGroundById, getAllGrounds, updateGround } from "../controllers/adminController.js";
 import { authenticateJWT } from "../utils/jwtAuth.js";
-import { upload } from "../utils/imgUpload.js";
+import { uploadImages } from "../utils/handleImgUpload.js";
 
 
 const router = express.Router();
 
 router.post('/signup', createAdmin);
 router.post('/login', adminLogin);
-router.post('/create-ground', authenticateJWT, upload.array('images', 5), createGround);
+router.post('/create-ground', authenticateJWT, uploadImages, createGround);
+router.put('/update-ground/:id', authenticateJWT, uploadImages, updateGround);
 router.get('/fetch-grounds', authenticateJWT, getAllGrounds);
 router.get('/fetch-ground/:id', authenticateJWT, fetchGroundById);
 
