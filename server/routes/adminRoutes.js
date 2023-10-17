@@ -1,5 +1,5 @@
 import express from "express";
-import { adminLogin, createAdmin, createGround, fetchGroundById, getAllGrounds, updateGround } from "../controllers/adminController.js";
+import { adminLogin, createAdmin, createGround, deleteGround, fetchGroundById, getAllGrounds, updateGround } from "../controllers/adminController.js";
 import { authenticateJWT } from "../utils/jwtAuth.js";
 import { uploadImages } from "../utils/handleImgUpload.js";
 
@@ -12,5 +12,6 @@ router.post('/create-ground', authenticateJWT, uploadImages, createGround);
 router.put('/update-ground/:id', authenticateJWT, uploadImages, updateGround);
 router.get('/fetch-grounds', authenticateJWT, getAllGrounds);
 router.get('/fetch-ground/:id', authenticateJWT, fetchGroundById);
+router.delete('/delete-ground/:id', authenticateJWT, deleteGround);
 
 export default router;
