@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { bookingSchema } from "./bookingModel.js";
 
 const userSchema = new mongoose.Schema({
     username: {
@@ -13,12 +14,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, "Password is required"],
     },
-    bookings: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Ground",
-        }
-    ],
+    bookings: [bookingSchema]
 });
 
 export const User = mongoose.model('User', userSchema);
