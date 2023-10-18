@@ -19,6 +19,10 @@ const groundSchema = new mongoose.Schema({
         type: Number,
         required: [true, "price is required"],
     },
+    published: {
+        type: Boolean,
+        required: [true, "required"],
+    },
     availableSlots: [String],
     images: [String],
     bookings: [bookingSchema]
