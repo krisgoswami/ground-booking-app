@@ -2,6 +2,7 @@ import { Admin } from "../models/adminModel.js";
 import { Ground } from "../models/groundModel.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
+import { Booking } from "../models/bookingModel.js";
 
 //*************** admin registration ***************//
 export const createAdmin = async (req, res) => {
@@ -27,7 +28,7 @@ export const createAdmin = async (req, res) => {
         });
         await admin.save();
 
-        const token = jwt.sign({ email, role: 'admin' }, process.env.SECRET, { expiresIn: '1h' }); //created this token so that user can login upon signing up
+        const token = jwt.sign({ email, role: 'admin' }, process.env.SECRET, { expiresIn: '1d' }); //created this token so that user can login upon signing up
         return res.status(200).send({
             message: "Admin created",
             success: true,
@@ -66,7 +67,7 @@ export const adminLogin = async (req, res) => {
         }
 
         //create token and login
-        const token = jwt.sign({ email, role: "admin" }, process.env.SECRET, { expiresIn: '1h' });
+        const token = jwt.sign({ email, role: "admin" }, process.env.SECRET, { expiresIn: '1d' });
         res.status(200).send({
             message: "login successful",
             success: true,
@@ -200,6 +201,24 @@ export const deleteGround = async (req, res) => {
         console.log(error);
         return res.status(400).send({
             message: "Error deleting ground details",
+            success: false,
+            error,
+        });
+    }
+}
+
+//*************** get all bookings ***************//
+export const getBookings = async (req, res) => {
+    try {
+        const bookings = await Booking.find({});
+        res.status(200).send({
+            success: true,
+            bookings,
+        });
+    } catch (error) {
+        console.log(error);
+        return res.status(400).send({
+            message: "No bookings found",
             success: false,
             error,
         });
