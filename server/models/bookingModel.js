@@ -6,6 +6,11 @@ export const bookingSchema = new mongoose.Schema({
         ref: 'User',
         required: true,
     },
+    ground: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Ground',
+        required: true,
+    },
     date: {
         type: Date,
         required: true,
