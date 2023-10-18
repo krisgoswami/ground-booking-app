@@ -2,6 +2,7 @@ import { User } from "../models/userModel.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { Ground } from "../models/groundModel.js";
+import { Booking } from "../models/bookingModel.js";
 
 //*************** user registration ***************//
 
@@ -168,6 +169,14 @@ export const bookTimeSlot = async (req, res) => {
             });
         }
 
+        //check if time slot is already booked
+        if (ground.bookings.some(booking => booking.date.getTime() === parsedDate.getTime() && booking.timeSlot === timeSlot)) {
+            return res.status(400).send({
+                message: "Selected time slot is already booked",
+                success: false,
+            });
+        }
+
         // user validation
         const user = await User.findOne({ email: req.user.email });
         if (!user) {
@@ -176,14 +185,22 @@ export const bookTimeSlot = async (req, res) => {
                 success: false,
             });
         }
-        const booking = {
+        const booking = new Booking({
             user: user._id,
-            date,
+            ground: ground._id,
+            date: parsedDate,
             timeSlot,
-        };
+        });
+        await booking.save();
 
+        //update and save ground's booking array
         ground.bookings.push(booking);
         await ground.save();
+
+        //update and save ground's booking array
+        user.bookings.push(booking);
+        await user.save();
+
         res.status(200).send({
             message: "Time slot booked successfully",
             success: true,
