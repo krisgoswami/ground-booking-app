@@ -1,6 +1,7 @@
 import { User } from "../models/userModel.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
+import { Ground } from "../models/groundModel.js";
 
 //*************** user registration ***************//
 
@@ -84,6 +85,114 @@ export const userLogin = async (req, res) => {
         console.log(error);
         return res.status(500).send({
             message: "Something went wrong",
+            success: false,
+            error,
+        });
+    }
+}
+
+//*************** display grounds for the user ***************//
+export const getGrounds = async (req, res) => {
+    try {
+        const ground = await Ground.find({ published: true });
+        res.status(200).send({
+            success: true,
+            ground,
+        });
+    } catch (error) {
+        console.log(error);
+        return res.status(400).send({
+            message: "No grounds listed",
+            success: false,
+            error,
+        });
+    }
+}
+
+//*************** get ground by id ***************//
+export const getGroundById = async (req, res) => {
+    try {
+        const groundId = req.params.id;
+        const ground = await Ground.findById(groundId);
+        res.status(200).send({
+            success: true,
+            ground,
+        });
+    } catch (error) {
+        console.log(error);
+        return res.status(404).send({
+            message: "ground not found",
+            success: false,
+            error,
+        });
+    }
+}
+
+//*************** book time slot ***************//
+export const bookTimeSlot = async (req, res) => {
+    try {
+        const groundId = req.params.id;
+        const ground = await Ground.findById(groundId);
+
+        if (!ground) {
+            return res.status(400).send({
+                message: "Ground not found",
+                success: false,
+            });
+        }
+
+        //date and timeslot validations
+        const { date, timeSlot } = req.body;
+
+        const isValidDate = (date) => {
+            const currentDate = new Date();
+            return date instanceof Date && date > currentDate;
+        };
+        // Parse the date string to a JavaScript Date object
+        const parsedDate = new Date(date);
+
+        if (!isValidDate(parsedDate)) {
+            return res.status(400).send({
+                message: "Invalid date provided",
+                success: false,
+            });
+        }
+
+        const isValidTimeSlot = (timeSlot, availableSlots) => {
+            return availableSlots.includes(timeSlot);
+        };
+        if (!isValidTimeSlot(timeSlot, ground.availableSlots)) {
+            return res.status(400).send({
+                message: "Selected time slot is not available",
+                success: false,
+            });
+        }
+
+        // user validation
+        const user = await User.findOne({ email: req.user.email });
+        if (!user) {
+            return res.status(403).send({
+                message: "User not found",
+                success: false,
+            });
+        }
+        const booking = {
+            user: user._id,
+            date,
+            timeSlot,
+        };
+
+        ground.bookings.push(booking);
+        await ground.save();
+        res.status(200).send({
+            message: "Time slot booked successfully",
+            success: true,
+            booking,
+        });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).send({
+            message: "something went wrong",
             success: false,
             error,
         });
