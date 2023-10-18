@@ -10,7 +10,7 @@ export const bookingSchema = new mongoose.Schema({
         type: Date,
         required: true,
     },
-    time: {
+    timeSlot: {
         type: String,
         required: true,
     },
