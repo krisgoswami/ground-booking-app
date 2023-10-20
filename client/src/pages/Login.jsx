@@ -1,28 +1,54 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import toast from 'react-hot-toast';
+import axios from 'axios';
+import { BASE_URL } from '../utils/helper';
 
 const Login = () => {
-    const [formData, setFormData] = useState({
+    const [inputs, setInputs] = useState({
         email: '',
         password: '',
     });
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value,
-        });
-    };
+    // handle input change
+    const handleOnChange = (e) => {
+        setInputs(prevState => ({
+            ...prevState,
+            [e.target.name]: e.target.value,
+        }));
+    }
 
-    const handleSubmit = (e) => {
+    //login logic
+    const handleOnSubmit = async (e) => {
         e.preventDefault();
-        // Add your login logic here
-        console.log('Form submitted:', formData);
+        if (!inputs.email || !inputs.password) {
+            toast.error("Fields cannot be empty");
+            return;
+        }
+
+        try {
+            const { data } = await axios.post(`${BASE_URL}/api/v1/user/login`, {
+                email: inputs.email,
+                password: inputs.password,
+            });
+            if (data.success) {
+                localStorage.setItem('token', data.token);
+                localStorage.setItem("userId", data?.admin._id);
+                localStorage.setItem("email", data?.admin.email);
+                // dispatch(authActions.login());
+                toast.success("Logged in");
+                // navigate('/all-courses');
+            } else {
+                toast.error("Email or password incorrect");
+            }
+        } catch (error) {
+            console.log(error);
+            toast.error("Email or password incorrect");
+        }
     };
 
     return (
         <div className="flex justify-center items-center h-screen">
-            <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full max-w-md" onSubmit={handleSubmit}>
+            <form className="bg-white shadow-lg rounded px-8 pt-6 pb-8 mb-4 w-full max-w-md" onSubmit={handleOnSubmit}>
                 <div className="mb-4">
                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
                         Email
@@ -33,8 +59,8 @@ const Login = () => {
                         type="email"
                         placeholder="Email"
                         name="email"
-                        value={formData.email}
-                        onChange={handleChange}
+                        value={inputs.email}
+                        onChange={handleOnChange}
                         required
                     />
                 </div>
@@ -48,8 +74,8 @@ const Login = () => {
                         type="password"
                         placeholder="Password"
                         name="password"
-                        value={formData.password}
-                        onChange={handleChange}
+                        value={inputs.password}
+                        onChange={handleOnChange}
                         required
                     />
                 </div>
