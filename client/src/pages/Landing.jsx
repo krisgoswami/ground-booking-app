@@ -35,28 +35,32 @@ const Landing = () => {
     return (
         <div>
             {/* Banner Image Section */}
-            <div className="relative h-96">
+            {/* <div className="relative h-96">
                 <div className="absolute inset-0 bg-cover bg-center z-10" style={{ backgroundImage: 'url(banner.jpg)' }}></div>
                 <div className="absolute inset-0 bg-black opacity-50 z-20"></div>
                 <div className="absolute inset-0 flex items-center justify-center z-30">
                     <h1 className="text-white text-4xl font-bold">Welcome to Ground Booking App</h1>
                 </div>
-            </div>
+            </div> */}
 
             {/* Image slider */}
             <ImageSlider />
 
             {/* Scroll Buttons */}
-            <div className="flex justify-between mt-8">
-                <button onClick={() => handleScroll('left')} className="bg-blue-500 text-white px-4 py-2 rounded-full">Scroll Left</button>
-                <button onClick={() => handleScroll('right')} className="bg-blue-500 text-white px-4 py-2 rounded-full">Scroll Right</button>
+            <div className="flex w-full absolute z-10 justify-between mt-40">
+                <button onClick={() => handleScroll('left')} className=" text-white m-1 rounded-full">
+                    <img className='w-10' src="../src/images/la.svg" alt="left arrow" />
+                </button>
+                <button onClick={() => handleScroll('right')} className="text-white m-1 rounded-full">
+                    <img className='w-10' src="../src/images/ra.svg" alt="right arrow" />
+                </button>
             </div>
 
             {/* Grounds Section */}
-            <div id="groundContainer" className="flex p-3 mx-auto mt-8 overflow-x-auto justify-between">
-                <div className="flex justify-between mx-4 my-5" style={{ transform: `translateX(-${scrollPosition}px)`, transition: 'transform 0.3s' }}>
+            <div id="groundContainer" className="flex mx-16 mt-8 overflow-x-auto justify-between relative">
+                <div className="flex justify-between my-5" style={{ transform: `translateX(-${scrollPosition}px)`, transition: 'transform 0.3s' }}>
                     {groundsData.map((ground) => (
-                        <div key={ground.id} className="mr-5"> {/* Add margin to separate the cards */}
+                        <div key={ground.id} className="mr-5">
                             <GroundCard ground={ground} />
                         </div>
                     ))}
