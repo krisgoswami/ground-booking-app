@@ -1,0 +1,6 @@
+/* src/custom.css */
+
+::-webkit-scrollbar {
+    width: 0 !important;
+    background: transparent; /* Optional: Set the background color of the scrollbar area */
+  }
