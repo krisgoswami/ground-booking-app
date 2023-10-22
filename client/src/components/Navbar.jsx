@@ -36,10 +36,11 @@ const Navbar = () => {
                         </button>
                     </div>
                     <div className={`lg:flex ${isOpen ? 'block' : 'hidden'}`}>
-                        <div className="lg:flex items-center justify-between text-lg space-x-4">
+                        <div className="lg:flex items-center justify-between text-lg gap-4">
                             <a href="#" className="text-black">Home</a>
                             <a href="#" className="text-black">About</a>
                             <a href="#" className="text-black">Contact</a>
+                            <button className="bg-blue-500 text-white ml-10 px-4 py-2 rounded-lg">Login</button>
                         </div>
                     </div>
                 </div>
