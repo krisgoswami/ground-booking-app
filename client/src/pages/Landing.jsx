@@ -1,19 +1,40 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import GroundCard from '../components/GroundCard';
 import ImageSlider from '../components/ImageSlider';
 import '../custom.css';
+import axios from 'axios';
+import { BASE_URL } from '../utils/helper';
 
 const Landing = () => {
+
+    const [grounds, setGrounds] = useState([]);
+
+    const getAllGrounds = async () => {
+        try {
+            const { data } = await axios.get(`${BASE_URL}/api/v1/user/grounds`);
+            console.log("data is", data);
+            if (data.success) {
+                setGrounds(data.grounds);
+            }
+            console.log(grounds);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    useEffect(() => {
+        getAllGrounds();
+    }, []);
+    console.log(grounds);
+
+
     const groundsData = [ // Sample data for grounds
-        { id: 1, name: 'Ground 1', location: 'Location 1', image: 'ground1.jpg' },
-        { id: 2, name: 'Ground 2', location: 'Location 2', image: 'ground2.jpg' },
-        { id: 2, name: 'Ground 2', location: 'Location 2', image: 'ground2.jpg' },
-        { id: 2, name: 'Ground 2', location: 'Location 2', image: 'ground2.jpg' },
-        { id: 2, name: 'Ground 2', location: 'Location 2', image: 'ground2.jpg' },
-        { id: 2, name: 'Ground 2', location: 'Location 2', image: 'ground2.jpg' },
-        { id: 2, name: 'Ground 2', location: 'Location 2', image: 'ground2.jpg' },
-        { id: 2, name: 'Ground 2', location: 'Location 2', image: 'ground2.jpg' },
-        { id: 2, name: 'Ground 2', location: 'Location 2', image: 'ground2.jpg' },
+        { id: 1, ground_name: 'Ground 1', location: 'Location 1', price: '1600' },
+        { id: 1, ground_name: 'Ground 1', location: 'Location 1', price: '1600' },
+        { id: 1, ground_name: 'Ground 1', location: 'Location 1', price: '1600' },
+        { id: 1, ground_name: 'Ground 1', location: 'Location 1', price: '1600' },
+        { id: 1, ground_name: 'Ground 1', location: 'Location 1', price: '1600' },
+        { id: 1, ground_name: 'Ground 1', location: 'Location 1', price: '1600' },
+        { id: 1, ground_name: 'Ground 1', location: 'Location 1', price: '1600' },
         // Add more ground objects as needed
     ];
 
@@ -22,7 +43,7 @@ const Landing = () => {
     const handleScroll = (direction) => {
         const container = document.getElementById('groundContainer');
         const cardWidth = 350; // Adjust this value based on your card width
-        const totalWidth = groundsData.length * cardWidth;
+        const totalWidth = grounds.length * cardWidth;
         const maxScroll = totalWidth - container.offsetWidth;
 
         if (direction === 'left') {
@@ -59,11 +80,16 @@ const Landing = () => {
             {/* Grounds Section */}
             <div id="groundContainer" className="flex mx-16 mt-8 overflow-x-auto justify-between relative">
                 <div className="flex justify-between my-5" style={{ transform: `translateX(-${scrollPosition}px)`, transition: 'transform 0.3s' }}>
-                    {groundsData.map((ground) => (
-                        <div key={ground.id} className="mr-5">
-                            <GroundCard ground={ground} />
+                    {grounds?.map((ground) =>
+                        <div key={ground?._id} className="mr-5">
+                            <GroundCard
+                                name={ground?.ground_name}
+                                location={ground.location}
+                                price={ground.price}
+                            // images={ground?.images}
+                            />
                         </div>
-                    ))}
+                    )}
                 </div>
             </div>
         </div>
