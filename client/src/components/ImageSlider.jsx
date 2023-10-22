@@ -6,6 +6,8 @@ const ImageSlider = () => {
         'versus 2',
         'versus 3',
         'versus 4',
+        'versus 5',
+        'versus 6',
         // Add more image URLs as needed
     ];
 
