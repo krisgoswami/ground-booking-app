@@ -95,10 +95,10 @@ export const userLogin = async (req, res) => {
 //*************** display grounds for the user ***************//
 export const getGrounds = async (req, res) => {
     try {
-        const ground = await Ground.find({ published: true });
+        const grounds = await Ground.find({ published: true });
         res.status(200).send({
             success: true,
-            ground,
+            grounds,
         });
     } catch (error) {
         console.log(error);
