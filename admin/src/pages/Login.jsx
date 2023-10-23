@@ -159,7 +159,7 @@ const Login = () => {
 
                     <p>{authState === "login" ? "Don't have an account?" : "Already have an account?"}
                         <span>{authState === "login" ?
-                            <a className='hover: cursor-pointer text-green-700' onClick={toggleAuthState}> Sign Up</a> : <a className='hover: cursor-pointer text-green-700' onClick={toggleAuthState}> Login</a>}
+                            <a className='ml-1 hover:underline cursor-pointer text-green-700' onClick={toggleAuthState}>Sign Up</a> : <a className='ml-1 hover:underline cursor-pointer text-green-700' onClick={toggleAuthState}>Login</a>}
                         </span>
                     </p>
                 </form>
