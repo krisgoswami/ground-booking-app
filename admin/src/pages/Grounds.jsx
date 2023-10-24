@@ -1,0 +1,49 @@
+import React from 'react'
+import GroundCard from '../components/GroundCard';
+import axios from 'axios';
+import { BASE_URL } from '../utils/helper';
+import { useEffect } from 'react';
+import { useState } from 'react';
+
+const Grounds = () => {
+
+    const [grounds, setGrounds] = useState([]);
+    const token = localStorage.getItem('token');
+
+    const getAllGrounds = async () => {
+        try {
+            const { data } = await axios.get(`${BASE_URL}/api/v1/admin/fetch-grounds`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                }
+            });
+            // console.log("data is", data);
+            if (data.success) {
+                setGrounds(data.grounds);
+            }
+            console.log(grounds);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    useEffect(() => {
+        getAllGrounds();
+    }, []);
+
+    return (
+        <div>
+            {grounds?.map((ground) =>
+                <div key={ground?._id} className="ml-4 mt-4 mr-5">
+                    <GroundCard
+                        name={ground?.ground_name}
+                        location={ground.location}
+                        price={ground.price}
+                    // images={ground?.images}
+                    />
+                </div>
+            )}
+        </div>
+    )
+}
+
+export default Grounds;
