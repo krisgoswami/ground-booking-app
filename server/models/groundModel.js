@@ -23,7 +23,7 @@ const groundSchema = new mongoose.Schema({
         type: Boolean,
         required: [true, "required"],
     },
-    availableSlots: [String],
+    // availableSlots: [String],
     images: [String],
     bookings: [bookingSchema]
 });
