@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css'
-import Navbar from './components/Navbar'
 import Landing from './pages/Landing'
 import Login from './pages/Login'
 import { Provider } from 'react-redux';
@@ -9,6 +8,7 @@ import { store } from './redux/store';
 import SidePanel from './components/SidePanel';
 import Grounds from './pages/Grounds';
 import CreateGround from './pages/CreateGround';
+import GroundDetails from './pages/GroundDetails';
 
 function App() {
 
@@ -22,8 +22,9 @@ function App() {
             <Routes>
               <Route path="/" element={<Login />} />
               <Route path="/home" exact element={<Landing />} />
-              <Route path="/grounds" component={<Grounds />} />
-              <Route path="/create-ground" component={<CreateGround />} />
+              <Route path="/grounds" element={<Grounds />} />
+              <Route path="/create-ground" element={<CreateGround />} />
+              <Route path="/ground/:id" element={<GroundDetails />} />
             </Routes>
           </div>
         </div>

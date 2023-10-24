@@ -16,7 +16,11 @@ const GroundDetails = () => {
 
     const getGroundDetails = async () => {
         try {
-            const { data } = await axios.get(`${BASE_URL}/api/v1/user/ground/${id}`);
+            const { data } = await axios.get(`${BASE_URL}/api/v1/admin/fetch-grounds/${id}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                }
+            });
             if (data?.success) {
                 setGround(data?.ground);
                 setInputs({
@@ -29,8 +33,20 @@ const GroundDetails = () => {
             console.log(error);
         }
     }
+
+    useEffect(() => {
+        getGroundDetails();
+    }, []);
+
     return (
-        <div>GroundDetails</div>
+        <div>
+            <div className="p-8">
+                <h2 className="text-2xl font-bold mb-4">{groundData.name}</h2>
+                <p className="text-lg mb-2">{groundData.location}</p>
+                <p className="text-gray-700 mb-8">{groundData.description}</p>
+                {/* Add more details here */}
+            </div>
+        </div>
     )
 }
 
