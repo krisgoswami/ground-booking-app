@@ -5,14 +5,22 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { authActions } from '../redux/store';
 import toast from 'react-hot-toast';
+import { Link, useLocation } from 'react-router-dom';
 
 const SidePanel = () => {
+
+    const location = useLocation();
+    const hideOnRoutes = ['/'];
+
+    if (hideOnRoutes.includes(location.pathname)) {
+        return null;
+    }
 
     //global state
     let isLogin = useSelector((state) => state.isLogin);
     isLogin = isLogin || localStorage.getItem('userId');
 
-    let user = localStorage.getItem("email");
+    let user = localStorage.getItem("username");
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -39,16 +47,17 @@ const SidePanel = () => {
             </div>
             <ul className="space-y-2">
                 <li>
-                    <a href="#" className="block py-2">Home</a>
+                    <Link to="/home" className="block py-2">Home</Link>
                 </li>
                 <li>
-                    <a href="#" className="block py-2">Grounds</a>
+                    <Link to="/grounds" className="block py-2">Grounds</Link>
                 </li>
                 <li>
-                    <a href="#" className="block py-2">Create Ground</a>
+                    <Link to="/create-ground" className="block py-2">Create Ground</Link>
                 </li>
             </ul>
             <div className="mt-auto mb-5">
+                <p className='font-bold mb-5'>Hello, {user}!</p>
                 <button onClick={handleLogout} className="bg-white text-green-700 font-bold py-2 px-4 rounded-full block w-full mb-2">Logout</button>
             </div>
         </div>

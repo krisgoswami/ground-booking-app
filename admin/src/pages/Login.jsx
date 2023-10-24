@@ -50,9 +50,10 @@ const Login = () => {
                 localStorage.setItem('token', data.token);
                 localStorage.setItem("userId", data?.admin._id);
                 localStorage.setItem("email", data?.admin.email);
+                localStorage.setItem("username", data?.admin.username);
                 dispatch(authActions.login());
                 toast.success("Logged in");
-                navigate('/landing');
+                navigate('/home');
             } else {
                 toast.error("Email or password incorrect");
             }
@@ -79,9 +80,10 @@ const Login = () => {
                 localStorage.setItem('token', data.token);
                 localStorage.setItem("userId", data?.admin._id);
                 localStorage.setItem("email", data?.admin.email);
+                localStorage.setItem("username", data?.admin.username);
                 dispatch(authActions.login());
                 toast.success("Registered");
-                navigate('/landing');
+                navigate('/home');
             } else {
                 toast.error("Email or password incorrect");
             }
