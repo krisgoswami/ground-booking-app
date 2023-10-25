@@ -37,10 +37,10 @@ const CreateGround = () => {
         }));
     }
 
-    const handleFileChange = (e) => {
-        const files = Array.from(e.target.files);
-        setInputs({ ...inputs, images: files });
-    };
+    // const handleFileChange = (e) => {
+    //     const files = Array.from(e.target.files);
+    //     setInputs({ ...inputs, images: files });
+    // };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -61,14 +61,22 @@ const CreateGround = () => {
                 formData.append('published', inputs.published);
 
                 // Append the image files
-                for (let i = 0; i < inputs.images.length; i++) {
-                    formData.append(`images`, inputs.images[i]);
-                }
+                // for (let i = 0; i < inputs.images.length; i++) {
+                //     formData.append(`images`, inputs.images[i]);
+                // }
+
+                // Convert comma-separated URLs to an array of strings
+                const imageUrls = inputs.images.split(',').map(url => url.trim());
+
+                // Append the image URLs to the FormData
+                imageUrls.forEach((url, index) => {
+                    formData.append(`images[${index}]`, url);
+                });
 
                 const { data } = await axios.post(`${BASE_URL}/api/v1/admin/create-ground`, formData, {
                     headers: {
                         'Authorization': `Bearer ${token}`,
-                        'Content-Type': 'multipart/form-data', // Set content type to multipart form data
+                        'Content-Type': 'application/json', // Set content type to multipart form data
                     }
                 });
                 if (data.success) {
@@ -146,10 +154,11 @@ const CreateGround = () => {
                 <div className="mb-4">
                     <label className="block text-gray-700 mb-2">Images</label>
                     <input
-                        type="file"
-                        accept="image/*"
-                        multiple
-                        onChange={handleFileChange}
+                        type="text"
+                        placeholder='Enter links separated by comma'
+                        name='images'
+                        value={inputs.images}
+                        onChange={handleInputChange}
                         className="w-full border border-gray-300 rounded px-4 py-2"
                     />
                 </div>

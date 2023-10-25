@@ -9,6 +9,7 @@ import SidePanel from './components/SidePanel';
 import Grounds from './pages/Grounds';
 import CreateGround from './pages/CreateGround';
 import GroundDetails from './pages/GroundDetails';
+import UpdateGround from './pages/UpdateGround';
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
               <Route path="/grounds" element={<Grounds />} />
               <Route path="/create-ground" element={<CreateGround />} />
               <Route path="/ground/:id" element={<GroundDetails />} />
+              <Route path="/update/:id" element={<UpdateGround />} />
             </Routes>
           </div>
         </div>

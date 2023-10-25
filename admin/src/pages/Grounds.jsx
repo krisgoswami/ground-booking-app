@@ -21,7 +21,7 @@ const Grounds = () => {
             if (data.success) {
                 setGrounds(data.grounds);
             }
-            console.log(grounds);
+            // console.log(grounds);
         } catch (error) {
             console.log(error);
         }
