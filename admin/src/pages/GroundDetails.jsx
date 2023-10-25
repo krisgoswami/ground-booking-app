@@ -48,6 +48,12 @@ const GroundDetails = () => {
                 <p className="text-lg mb-2">{inputs.location}</p>
                 <p className="text-gray-700 mb-8">{inputs.description}</p>
                 <p className="text-gray-700 mb-8">{inputs.price}</p>
+                <button
+                    className='bg-green-700 text-white px-4 py-2 rounded-full'
+                    onClick={() => {
+                        navigate(`/update/${id}`);
+                    }}
+                >Edit</button>
             </div>
         </div>
     )
