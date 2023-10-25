@@ -87,8 +87,8 @@ export const adminLogin = async (req, res) => {
 //*************** create ground ***************//
 export const createGround = async (req, res) => {
     try {
-        const images = req.files.map(file => file.path);
-        const ground = new Ground({ ...req.body, images });
+        const newGround = req.body;
+        const ground = new Ground(newGround);
         await ground.save();
         res.status(200).send({
             message: "Ground creation successful",
@@ -144,22 +144,12 @@ export const fetchGroundById = async (req, res) => {
 //*************** update ground details ***************//
 export const updateGround = async (req, res) => {
     try {
-        const newImages = req.files.map(file => file.path);
         let updateGround;
-        if (newImages.length > 0) {
-            updateGround = await Ground.findByIdAndUpdate(
-                req.params.id,
-                { $push: { images: { $each: newImages } } },
-                { new: true },
-            );
-        } else {
-            updateGround = await Ground.findByIdAndUpdate(
-                req.params.id,
-                req.body,
-                { new: true },
-            );
-        }
-
+        updateGround = await Ground.findByIdAndUpdate(
+            req.params.id,
+            req.body,
+            { new: true },
+        );
         if (!updateGround) {
             return res.status(404).send({
                 message: "ground not found",
