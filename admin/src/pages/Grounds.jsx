@@ -31,7 +31,7 @@ const Grounds = () => {
     }, []);
 
     return (
-        <div>
+        <div className='flex flex-wrap justify-between gap-2'>
             {grounds?.map((ground) =>
                 <div key={ground?._id} className="ml-4 mt-4 mr-5">
                     <GroundCard
@@ -39,7 +39,7 @@ const Grounds = () => {
                         name={ground?.ground_name}
                         location={ground.location}
                         price={ground.price}
-                    // images={ground?.images}
+                        image={ground?.images[0]}
                     />
                 </div>
             )}
