@@ -131,8 +131,8 @@ const CreateGround = () => {
                     <Switch
                         onChange={handleSwitchChange}
                         checked={inputs.published}
-                        onColor="#86d3ff"
-                        onHandleColor="#2693e6"
+                        onColor="#6fd26f"
+                        onHandleColor="#1ea624"
                         handleDiameter={30}
                         uncheckedIcon={false}
                         checkedIcon={false}
