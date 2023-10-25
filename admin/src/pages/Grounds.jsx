@@ -33,7 +33,7 @@ const Grounds = () => {
     return (
         <div className='flex flex-wrap justify-start gap-14'>
             {grounds?.map((ground) =>
-                <div key={ground?._id} className="ml-4 mt-4 mr-5">
+                <div key={ground?._id} className="ml-10 mt-5">
                     <GroundCard
                         id={ground?._id}
                         name={ground?.ground_name}
