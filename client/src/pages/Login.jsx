@@ -53,7 +53,7 @@ const Login = () => {
                 localStorage.setItem("username", data?.admin.username);
                 dispatch(authActions.login());
                 toast.success("Logged in");
-                navigate('/home');
+                navigate('/');
             } else {
                 toast.error("Email or password incorrect");
             }
