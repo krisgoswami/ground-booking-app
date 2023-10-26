@@ -1,8 +1,15 @@
 
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
+
     const [isOpen, setIsOpen] = useState(false);
+    const navigate = useNavigate();
+
+    const handleLogin = () => {
+        navigate('/login');
+    }
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
@@ -39,7 +46,7 @@ const Navbar = () => {
                             <a href="#" className="text-black">Home</a>
                             <a href="#" className="text-black">About</a>
                             <a href="#" className="text-black">Contact</a>
-                            <button className="bg-blue-500 text-white ml-10 px-4 py-2 rounded-lg">Login</button>
+                            <button className="bg-blue-500 text-white ml-10 px-4 py-2 rounded-lg" onClick={handleLogin}>Login</button>
                         </div>
                     </div>
                 </div>

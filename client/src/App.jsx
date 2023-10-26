@@ -15,14 +15,13 @@ function App() {
       <Provider store={store}>
         <Toaster />
         <Router>
+          <Navbar />
           <Routes>
+            <Route path="/" exact element={<Landing />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/home" exact element={<Landing />} />
           </Routes>
         </Router>
-        <Navbar />
-        <Landing />2
       </Provider>
     </>
   )
