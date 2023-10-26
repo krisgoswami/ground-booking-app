@@ -68,7 +68,9 @@ const Navbar = () => {
                     </div>
                     <div className={`lg:flex ${isOpen ? 'block' : 'hidden'}`}>
                         <div className="lg:flex items-center justify-between text-lg gap-4">
-                            <a href="#" className="text-black">Home</a>
+                            <p className="text-black cursor-pointer" onClick={() => {
+                                navigate('/');
+                            }}>Home</p>
                             <a href="#" className="text-black">About</a>
                             <a href="#" className="text-black">Contact</a>
                         </div>
@@ -79,8 +81,8 @@ const Navbar = () => {
                         }
                         {isLogin &&
                             <>
-                                <p>Hi, {user}</p>
-                                <button className="bg-green-700 text-white font-bold ml-10 px-4 py-1 rounded-full" onClick={handleLogout}>Logout</button>
+                                <p className='text-white font-semibold'>Hi, {user}</p>
+                                <button className="bg-green-700 text-white font-bold px-4 py-1 rounded-full" onClick={handleLogout}>Logout</button>
                             </>
                         }
                     </div>
