@@ -1,14 +1,39 @@
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { authActions } from '../redux/store';
+import toast from 'react-hot-toast';
 
 const Navbar = () => {
 
+    //global state
+    let isLogin = useSelector((state) => state.isLogin);
+    isLogin = isLogin || localStorage.getItem('userId');
+
+    let user = localStorage.getItem("username");
+
     const [isOpen, setIsOpen] = useState(false);
+
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const handleLogin = () => {
         navigate('/login');
+    }
+
+    //handle logout
+    const handleLogout = () => {
+        try {
+            dispatch(authActions.logout());
+            localStorage.clear();
+            toast("You've been logged out", {
+                icon: '⚠️',
+            });
+            navigate('/login');
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     const toggleMenu = () => {
@@ -16,10 +41,10 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="p-4">
+        <nav className=" bg-green-700 p-4">
             <div className="container mx-auto">
                 <div className="flex justify-between items-center">
-                    <div className="text-black font-bold text-xl">Ground Booking App</div>
+                    <div className="text-white font-bold text-xl">Ground Booking App</div>
                     <div className="block lg:hidden">
                         <button
                             onClick={toggleMenu}
@@ -46,8 +71,18 @@ const Navbar = () => {
                             <a href="#" className="text-black">Home</a>
                             <a href="#" className="text-black">About</a>
                             <a href="#" className="text-black">Contact</a>
-                            <button className="bg-blue-500 text-white ml-10 px-4 py-2 rounded-lg" onClick={handleLogin}>Login</button>
                         </div>
+                    </div>
+                    <div className='flex items-center'>
+                        {!isLogin &&
+                            <button className="bg-green-700 text-white font-bold ml-10 px-4 py-1 rounded-full" onClick={handleLogin}>Login</button>
+                        }
+                        {isLogin &&
+                            <>
+                                <p>Hi, {user}</p>
+                                <button className="bg-green-700 text-white font-bold ml-10 px-4 py-1 rounded-full" onClick={handleLogout}>Logout</button>
+                            </>
+                        }
                     </div>
                 </div>
             </div>
