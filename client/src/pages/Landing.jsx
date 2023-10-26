@@ -71,6 +71,7 @@ const Landing = () => {
                     {grounds?.map((ground) =>
                         <div key={ground?._id} className="mr-5">
                             <GroundCard
+                                id={ground?._id}
                                 name={ground?.ground_name}
                                 location={ground.location}
                                 price={ground.price}

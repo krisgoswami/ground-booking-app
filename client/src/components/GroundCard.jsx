@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 const GroundCard = ({ id, name, location, price, image }) => {
 
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     return (
         <div className="bg-green-300 w-80 p-4 shadow-md rounded-md">
@@ -12,9 +12,9 @@ const GroundCard = ({ id, name, location, price, image }) => {
             <p className="text-gray-700 mb-2 font-semibold">{location}</p>
             <p className="text-gray-700 mb-2 font-bold">₹ <span className='font-normal'>{price}</span></p>
             <button
-                // onClick={() => {
-                //     navigate(`/ground/${id}`);
-                // }}
+                onClick={() => {
+                    navigate(`/ground/${id}`);
+                }}
                 className="bg-green-700 text-white px-4 py-2 rounded-full">
                 View
             </button>
