@@ -26,18 +26,6 @@ const Landing = () => {
     }, []);
     console.log(grounds);
 
-
-    const groundsData = [ // Sample data for grounds
-        { id: 1, ground_name: 'Ground 1', location: 'Location 1', price: '1600' },
-        { id: 1, ground_name: 'Ground 1', location: 'Location 1', price: '1600' },
-        { id: 1, ground_name: 'Ground 1', location: 'Location 1', price: '1600' },
-        { id: 1, ground_name: 'Ground 1', location: 'Location 1', price: '1600' },
-        { id: 1, ground_name: 'Ground 1', location: 'Location 1', price: '1600' },
-        { id: 1, ground_name: 'Ground 1', location: 'Location 1', price: '1600' },
-        { id: 1, ground_name: 'Ground 1', location: 'Location 1', price: '1600' },
-        // Add more ground objects as needed
-    ];
-
     const [scrollPosition, setScrollPosition] = useState(0);
 
     const handleScroll = (direction) => {
@@ -86,7 +74,7 @@ const Landing = () => {
                                 name={ground?.ground_name}
                                 location={ground.location}
                                 price={ground.price}
-                            // images={ground?.images}
+                                image={ground?.images[0]}
                             />
                         </div>
                     )}
