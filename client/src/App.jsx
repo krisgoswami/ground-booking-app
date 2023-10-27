@@ -7,6 +7,8 @@ import { Provider } from 'react-redux';
 import { Toaster } from 'react-hot-toast';
 import { store } from './redux/store';
 import GroundDetails from './pages/GroundDetails';
+import Bookings from './pages/Bookings';
+import Grounds from './pages/Grounds';
 
 function App() {
 
@@ -20,6 +22,8 @@ function App() {
             <Route path="/" exact element={<Landing />} />
             <Route path="/login" element={<Login />} />
             <Route path="/ground/:id" element={<GroundDetails />} />
+            <Route path="/bookings" element={<Bookings />} />
+            <Route path="/grounds" element={<Grounds />} />
           </Routes>
         </Router>
       </Provider>
