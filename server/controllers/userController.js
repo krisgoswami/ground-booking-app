@@ -147,7 +147,7 @@ export const bookTimeSlot = async (req, res) => {
 
         const isValidDate = (date) => {
             const currentDate = new Date();
-            return date instanceof Date && date >= currentDate;
+            return date instanceof Date && date == currentDate;
         };
         // Parse the date string to a JavaScript Date object
         const parsedDate = new Date(date);
@@ -186,8 +186,8 @@ export const bookTimeSlot = async (req, res) => {
             });
         }
         const booking = new Booking({
-            user: user._id,
-            ground: ground._id,
+            user: user.username,
+            ground: ground.ground_name,
             date: parsedDate,
             timeSlot,
         });

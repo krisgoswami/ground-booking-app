@@ -2,12 +2,12 @@ import mongoose from "mongoose";
 
 export const bookingSchema = new mongoose.Schema({
     user: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.String,
         ref: 'User',
         required: true,
     },
     ground: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.String,
         ref: 'Ground',
         required: true,
     },
