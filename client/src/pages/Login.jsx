@@ -42,15 +42,15 @@ const Login = () => {
         }
 
         try {
-            const { data } = await axios.post(`${BASE_URL}/api/v1/admin/login`, {
+            const { data } = await axios.post(`${BASE_URL}/api/v1/user/login`, {
                 email: inputs.email,
                 password: inputs.password,
             });
             if (data.success) {
                 localStorage.setItem('token', data.token);
-                localStorage.setItem("userId", data?.admin._id);
-                localStorage.setItem("email", data?.admin.email);
-                localStorage.setItem("username", data?.admin.username);
+                localStorage.setItem("userId", data?.user._id);
+                localStorage.setItem("email", data?.user.email);
+                localStorage.setItem("username", data?.user.username);
                 dispatch(authActions.login());
                 toast.success("Logged in");
                 navigate('/');
@@ -71,19 +71,19 @@ const Login = () => {
         }
 
         try {
-            const { data } = await axios.post(`${BASE_URL}/api/v1/admin/signup`, {
+            const { data } = await axios.post(`${BASE_URL}/api/v1/user/signup`, {
                 username: inputs.username,
                 email: inputs.email,
                 password: inputs.password,
             });
             if (data.success) {
                 localStorage.setItem('token', data.token);
-                localStorage.setItem("userId", data?.admin._id);
-                localStorage.setItem("email", data?.admin.email);
-                localStorage.setItem("username", data?.admin.username);
+                localStorage.setItem("userId", data?.user._id);
+                localStorage.setItem("email", data?.user.email);
+                localStorage.setItem("username", data?.user.username);
                 dispatch(authActions.login());
                 toast.success("Registered");
-                navigate('/home');
+                navigate('/');
             } else {
                 toast.error("Email or password incorrect");
             }
