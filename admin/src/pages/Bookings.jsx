@@ -25,6 +25,7 @@ const Bookings = () => {
             console.log(error);
         }
     }
+
     useEffect(() => {
         getAllBookings();
     }, []);
@@ -37,7 +38,7 @@ const Bookings = () => {
                         id={booking?._id}
                         user={booking?.user}
                         ground={booking?.ground}
-                        date={booking?.date}
+                        date={booking?.date.slice(0, 10)}
                         time={booking?.timeSlot}
                     />
                 </div>
