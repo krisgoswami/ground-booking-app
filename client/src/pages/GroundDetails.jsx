@@ -7,7 +7,7 @@ import ImageViewer from 'react-simple-image-viewer';
 import toast from 'react-hot-toast';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-
+import { set } from 'date-fns';
 
 const GroundDetails = () => {
 
@@ -21,6 +21,13 @@ const GroundDetails = () => {
 	const [ground, setGround] = useState({});
 	const [selectedDate, setSelectedDate] = useState(new Date());
 	const [selectedTimeSlot, setSelectedTimeSlot] = useState('');
+
+	const handleDateChange = date => {
+		// Use the 'set' function to explicitly set the timezone to UTC
+		const adjustedDate = set(date, { hours: 5, minutes: 30, seconds: 0, milliseconds: 0 });
+		setSelectedDate(adjustedDate);
+	};
+
 
 	//global state
 	let isLogin = useSelector((state) => state.isLogin);
@@ -84,7 +91,7 @@ const GroundDetails = () => {
 			});
 			if (data.success) {
 				toast.success("Ground booked!");
-				navigate('/');
+				navigate('/bookings');
 			}
 		} catch (error) {
 			console.log(error);
@@ -105,7 +112,7 @@ const GroundDetails = () => {
 					<DatePicker
 						name='date'
 						selected={selectedDate}
-						onChange={date => setSelectedDate(new Date(date))}
+						onChange={handleDateChange}
 						dateFormat={"yyyy/MM/dd"}
 						className="w-48 border border-gray-300 rounded px-4 py-2"
 					/>

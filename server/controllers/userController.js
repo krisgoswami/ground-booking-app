@@ -147,10 +147,11 @@ export const bookTimeSlot = async (req, res) => {
 
         const isValidDate = (date) => {
             const currentDate = new Date();
-            return date instanceof Date && date >= currentDate;
+            return date instanceof Date && date > currentDate;
         };
         // Parse the date string to a JavaScript Date object
         const parsedDate = new Date(date);
+        console.log(parsedDate);
 
         if (!isValidDate(parsedDate)) {
             return res.status(400).send({
