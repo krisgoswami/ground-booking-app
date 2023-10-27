@@ -9,6 +9,7 @@ import { store } from './redux/store';
 import GroundDetails from './pages/GroundDetails';
 import Bookings from './pages/Bookings';
 import Grounds from './pages/Grounds';
+import Footer from './pages/Footer';
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
             <Route path="/grounds" element={<Grounds />} />
           </Routes>
         </Router>
+        <Footer />
       </Provider>
     </>
   )
