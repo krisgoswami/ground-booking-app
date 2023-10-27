@@ -5,9 +5,7 @@ import { BASE_URL } from '../utils/helper';
 import { useSelector, useDispatch } from 'react-redux';
 import ImageViewer from 'react-simple-image-viewer';
 import toast from 'react-hot-toast';
-import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { set } from 'date-fns';
 
 const GroundDetails = () => {
 
@@ -22,13 +20,6 @@ const GroundDetails = () => {
 	const [selectedDate, setSelectedDate] = useState(new Date());
 	const [selectedTimeSlot, setSelectedTimeSlot] = useState('');
 
-	const handleDateChange = date => {
-		// Use the 'set' function to explicitly set the timezone to UTC
-		const adjustedDate = set(date, { hours: 5, minutes: 30, seconds: 0, milliseconds: 0 });
-		setSelectedDate(adjustedDate);
-	};
-
-
 	//global state
 	let isLogin = useSelector((state) => state.isLogin);
 	isLogin = isLogin || localStorage.getItem('userId');
@@ -38,12 +29,12 @@ const GroundDetails = () => {
 		setCurrentImage(index);
 		setIsViewerOpen(true);
 	};
-
 	const closeImageViewer = () => {
 		setCurrentImage(0);
 		setIsViewerOpen(false);
 	};
 
+	//logic to get ground details
 	const getGroundDetails = async () => {
 		try {
 			const { data } = await axios.get(`${BASE_URL}/api/v1/user/ground/${id}`, {
@@ -63,16 +54,26 @@ const GroundDetails = () => {
 					availableSlots: data?.ground.availableSlots,
 				})
 			}
-			// console.log(inputs.availableSlots);
 		} catch (error) {
 			console.log(error);
 		}
 	}
-
 	useEffect(() => {
 		getGroundDetails();
 	}, []);
 
+	//handle datechange to disable current day timeslot
+	const handleDateChange = (event) => {
+		const selectedValue = event.target.value;
+		setSelectedDate(new Date(selectedValue));
+	};
+	const handleTimeSlotChange = (event) => {
+		const selectedValue = event.target.value;
+		setTimeSlot(selectedValue);
+	};
+	const isCurrentDate = selectedDate.toISOString().split('T')[0] === new Date().toISOString().split('T')[0];
+
+	//logic to book ground
 	const bookGround = async (e) => {
 		e.preventDefault();
 		if (selectedDate === "" || selectedTimeSlot === "") {
@@ -109,12 +110,10 @@ const GroundDetails = () => {
 
 				<div className="mb-8">
 					<label className="block text-gray-700 mb-2">Select Date:</label>
-					<DatePicker
-						name='date'
-						selected={selectedDate}
+					<input
+						type="date"
+						value={selectedDate.toISOString().split('T')[0]}
 						onChange={handleDateChange}
-						dateFormat={"yyyy/MM/dd"}
-						className="w-48 border border-gray-300 rounded px-4 py-2"
 					/>
 				</div>
 
@@ -123,14 +122,17 @@ const GroundDetails = () => {
 					<select
 						name='timeSlot'
 						value={selectedTimeSlot}
-						onChange={e => setSelectedTimeSlot(e.target.value)}
+						// onChange={e => setSelectedTimeSlot(e.target.value)}
+						onChange={handleTimeSlotChange}
 						className="w-48 border border-gray-300 rounded px-4 py-2"
+						disabled={isCurrentDate}
 					>
 						<option value="">Select a Time Slot</option>
 						{inputs.availableSlots?.map((time, index) =>
 							<option key={index} value={time}>{time}</option>
 						)}
 					</select>
+					{isCurrentDate ? <span className='text-red-500 ml-3'>No slots available for selected date</span> : ""}
 				</div>
 
 				<div className="flex flex-row items-center">
