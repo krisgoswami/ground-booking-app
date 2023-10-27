@@ -27,12 +27,10 @@ export default GroundCard;
 export const BookingCard = ({ id, user, ground, date, time }) => {
     return (
         <div className="bg-green-300 w-80 p-4 shadow-md rounded-md">
-            <img src={""} alt={""} className="w-full h-40 object-cover mb-4" />
-            <h3 className="text-xl font-bold mb-2">{id}</h3>
-            <p className="text-gray-700 mb-2 font-semibold">{user}</p>
-            <p className="text-gray-700 mb-2 font-semibold">{ground}</p>
-            <p className="text-gray-700 mb-2 font-semibold">{date}</p>
-            <p className="text-gray-700 mb-2 font-semibold">{time}</p>
+            <h3 className="text-xl font-bold mb-2">{ground}</h3>
+            <p className="text-gray-700 mb-2 font-semibold">Booked by: {user}</p>
+            <p className="text-gray-700 mb-2 font-semibold">Date: {date}</p>
+            <p className="text-gray-700 mb-2 font-semibold">Time: {time}</p>
             {/* <p className="text-gray-700 mb-2 font-bold">₹ <span className='font-normal'>{price}</span></p> */}
             {/* <button
                 onClick={() => {
