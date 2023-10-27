@@ -1,5 +1,5 @@
 import express from "express";
-import { bookTimeSlot, getGroundById, getGrounds, userLogin, userSignup } from "../controllers/userController.js";
+import { bookTimeSlot, getBookings, getGroundById, getGrounds, userLogin, userSignup } from "../controllers/userController.js";
 import { authenticateJWT } from "../utils/jwtAuth.js";
 
 const router = express.Router();
@@ -10,6 +10,5 @@ router.get('/grounds', getGrounds);
 router.get('/ground/:id', getGroundById);
 router.post('/book-slot/:id', authenticateJWT, bookTimeSlot);
 router.get('/bookings', authenticateJWT, getBookings);
-
 
 export default router;
