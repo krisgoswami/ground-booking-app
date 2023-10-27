@@ -10,6 +10,7 @@ import Grounds from './pages/Grounds';
 import CreateGround from './pages/CreateGround';
 import GroundDetails from './pages/GroundDetails';
 import UpdateGround from './pages/UpdateGround';
+import Bookings from './pages/Bookings';
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
               <Route path="/create-ground" element={<CreateGround />} />
               <Route path="/ground/:id" element={<GroundDetails />} />
               <Route path="/update/:id" element={<UpdateGround />} />
+              <Route path="/bookings" element={<Bookings />} />
             </Routes>
           </div>
         </div>

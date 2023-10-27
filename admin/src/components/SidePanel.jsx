@@ -55,6 +55,9 @@ const SidePanel = () => {
                 <li>
                     <Link to="/create-ground" className="block py-2">Create Ground</Link>
                 </li>
+                <li>
+                    <Link to="/bookings" className="block py-2">View Bookings</Link>
+                </li>
             </ul>
             <div className="mt-auto mb-5">
                 <p className='font-bold mb-5'>Hello, {user}!</p>
