@@ -9,6 +9,7 @@ router.post('/login', userLogin);
 router.get('/grounds', getGrounds);
 router.get('/ground/:id', getGroundById);
 router.post('/book-slot/:id', authenticateJWT, bookTimeSlot);
+router.get('/bookings', authenticateJWT, getBookings);
 
 
 export default router;
