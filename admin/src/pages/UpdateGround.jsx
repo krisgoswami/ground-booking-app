@@ -57,6 +57,7 @@ const UpdateGround = () => {
                     description: fetchedGround.description,
                     price: fetchedGround.price,
                     published: fetchedGround.published,
+                    availableSlots: fetchedGround.availableSlots,
                     images: fetchedGround.images,
                 }));
             }
@@ -100,17 +101,20 @@ const UpdateGround = () => {
                 formData.append('location', inputs.location);
                 formData.append('published', inputs.published);
 
-                // Append the image files
-                // for (let i = 0; i < inputs.images.length; i++) {
-                //     formData.append(`images`, inputs.images[i]);
-                // }
-
                 // Convert comma-separated URLs to an array of strings
                 const imageUrls = inputs.images?.map(url => url.trim());
 
                 // Append the image URLs to the FormData
                 imageUrls.forEach((url, index) => {
                     formData.append(`images[${index}]`, url);
+                });
+
+                //Convert comma-separated timeslots to an array of strings
+                const availableSlots = inputs.availableSlots?.split(',').map(timeslot => timeslot.trim());
+
+                // Append the timeslots to the FormData
+                availableSlots.forEach((timeslot, index) => {
+                    formData.append(`availableSlots[${index}]`, timeslot);
                 });
 
                 const { data } = await axios.put(`${BASE_URL}/api/v1/admin/update-ground/${id}`, formData, {
@@ -209,6 +213,16 @@ const UpdateGround = () => {
                         height={20}
                         width={48}
                         className="react-switch"
+                    />
+                </div>
+                <div className="mb-4">
+                    <label className="block text-gray-700 mb-2">Time Slots</label>
+                    <textarea
+                        placeholder='Enter time slots (7:00 PM, 8:00 PM...) separated by comma'
+                        name='availableSlots'
+                        value={inputs.availableSlots}
+                        onChange={handleInputChange}
+                        className="w-full border border-gray-300 rounded px-4 py-2 h-32"
                     />
                 </div>
                 <div className="mb-4">
