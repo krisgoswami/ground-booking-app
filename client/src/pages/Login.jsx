@@ -96,7 +96,7 @@ const Login = () => {
     return (
         <div className="flex h-screen">
             {/* Left side with image and text */}
-            <div className="flex-1 bg-green-700 text-white p-12 flex items-center justify-center">
+            <div className="flex-1 bg-gray-700 text-white p-12 flex items-center justify-center">
                 <div>
                     <h2 className="text-4xl font-bold mb-4">Welcome to Ground Booking App</h2>
                     <p className="text-lg">Login to access your account.</p>
@@ -147,13 +147,13 @@ const Login = () => {
                     </div>
                     {authState === "login" ? <button
                         type="submit"
-                        className="w-full bg-green-700 hover:bg-green-900 text-white py-2 rounded-lg"
+                        className="w-full bg-gray-700 hover:bg-gray-950 text-white py-2 rounded-lg"
                         onClick={handleLogin}
                     >
                         Login
                     </button> : <button
                         type="submit"
-                        className="w-full bg-green-700 hover:bg-green-900 text-white py-2 rounded-lg"
+                        className="w-full bg-gray-700 hover:bg-gray-950 text-white py-2 rounded-lg"
                         onClick={handleSignup}
                     >
                         Sign Up
@@ -161,7 +161,7 @@ const Login = () => {
 
                     <p>{authState === "login" ? "Don't have an account?" : "Already have an account?"}
                         <span>{authState === "login" ?
-                            <a className='ml-1 hover:underline cursor-pointer text-green-700' onClick={toggleAuthState}>Sign Up</a> : <a className='ml-1 hover:underline cursor-pointer text-green-700' onClick={toggleAuthState}>Login</a>}
+                            <a className='ml-1 hover:underline cursor-pointer text-blue-600' onClick={toggleAuthState}>Sign Up</a> : <a className='ml-1 hover:underline cursor-pointer text-blue-600' onClick={toggleAuthState}>Login</a>}
                         </span>
                     </p>
                 </form>

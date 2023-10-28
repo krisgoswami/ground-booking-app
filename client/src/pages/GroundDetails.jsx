@@ -69,7 +69,7 @@ const GroundDetails = () => {
 	};
 	const handleTimeSlotChange = (event) => {
 		const selectedValue = event.target.value;
-		setTimeSlot(selectedValue);
+		setSelectedTimeSlot(selectedValue);
 	};
 	const isCurrentDate = selectedDate.toISOString().split('T')[0] === new Date().toISOString().split('T')[0];
 
@@ -101,7 +101,7 @@ const GroundDetails = () => {
 	}
 
 	return (
-		<div className="bg-green-50 h-screen p-8">
+		<div className="bg-gray-200 h-screen p-8">
 			<form onSubmit={bookGround}>
 				<h2 className="text-2xl font-bold mb-4">{inputs.name}</h2>
 				<p className="text-lg mb-2">{inputs.location}</p>
@@ -114,6 +114,7 @@ const GroundDetails = () => {
 						type="date"
 						value={selectedDate.toISOString().split('T')[0]}
 						onChange={handleDateChange}
+						className='rounded p-2 border border-gray-300'
 					/>
 				</div>
 
@@ -124,7 +125,7 @@ const GroundDetails = () => {
 						value={selectedTimeSlot}
 						// onChange={e => setSelectedTimeSlot(e.target.value)}
 						onChange={handleTimeSlotChange}
-						className="w-48 border border-gray-300 rounded px-4 py-2"
+						className="w-42 border border-gray-300 rounded p-2"
 						disabled={isCurrentDate}
 					>
 						<option value="">Select a Time Slot</option>
@@ -150,13 +151,13 @@ const GroundDetails = () => {
 				</div>
 				{isLogin && <button
 					type='submit'
-					className='bg-green-700 text-white px-4 py-2 rounded-full mt-8'
+					className='bg-gray-900 text-white px-4 py-2 rounded-lg mt-8'
 				>
 					Book
 				</button>}
 				{!isLogin && <button
 					onClick={() => { navigate('/login') }}
-					className='bg-green-700 text-white px-4 py-2 rounded-full mt-8'
+					className='bg-gray-900 text-white px-4 py-2 rounded-lg mt-8'
 				>
 					Login to book
 				</button>}

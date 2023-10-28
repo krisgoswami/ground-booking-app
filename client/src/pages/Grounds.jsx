@@ -24,18 +24,20 @@ const Grounds = () => {
     console.log(grounds);
 
     return (
-        <div className='flex flex-wrap justify-start gap-5'>
-            {grounds?.map((ground) =>
-                <div key={ground?._id} className="ml-10 mt-10">
-                    <GroundCard
-                        id={ground?._id}
-                        name={ground?.ground_name}
-                        location={ground.location}
-                        price={ground.price}
-                        image={ground?.images[0]}
-                    />
-                </div>
-            )}
+        <div className='bg-gray-200 h-screen p-8'>
+            <div className='flex flex-wrap justify-start gap-5'>
+                {grounds?.map((ground) =>
+                    <div key={ground?._id} className="ml-10 mt-10">
+                        <GroundCard
+                            id={ground?._id}
+                            name={ground?.ground_name}
+                            location={ground.location}
+                            price={ground.price}
+                            image={ground?.images[0]}
+                        />
+                    </div>
+                )}
+            </div>
         </div>
     )
 }

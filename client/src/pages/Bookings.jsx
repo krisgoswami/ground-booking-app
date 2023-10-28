@@ -33,8 +33,8 @@ const Bookings = () => {
     }, []);
 
     return (
-        <div>
-            <p className='ml-10 mt-5 mb-5 font-bold text-3xl'>Your Bookings</p>
+        <div className='bg-gray-200 h-screen p-8'>
+            <p className=' ml-10 mt-5 mb-5 font-bold text-3xl'>Your Bookings</p>
             <div className='flex flex-wrap justify-start gap-5'>
                 {bookings?.map((booking) =>
                     <div key={booking?._id} className="ml-10 mt-5">
