@@ -101,8 +101,15 @@ const GroundDetails = () => {
 	}
 
 	return (
-		<div className="bg-gray-200 h-screen p-8">
+		<div className="bg-gray-200 h-screen overflow-y-auto p-8">
 			<form onSubmit={bookGround}>
+				<div className="relative h-96">
+					<img src={inputs.images[0]} className="object-cover w-full h-full"></img>
+					<div className="absolute inset-0 bg-black opacity-70 z-20"></div>
+					<div className="absolute inset-0 flex items-center justify-center z-30">
+						<h1 className="text-white text-4xl font-bold">{inputs.name}</h1>
+					</div>
+				</div>
 				<h2 className="text-2xl font-bold mb-4">{inputs.name}</h2>
 				<p className="text-lg mb-2">{inputs.location}</p>
 				<p className="text-gray-700 mb-8">{inputs.description}</p>
