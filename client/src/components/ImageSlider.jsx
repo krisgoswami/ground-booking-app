@@ -33,7 +33,7 @@ const ImageSlider = () => {
         <div className="relative text-white w-full h-screen overflow-hidden">
             <div className="absolute inset-0 bg-black opacity-60 z-20"></div>
             <div className="absolute inset-0 flex items-center justify-center z-30">
-                <h1 className="text-white text-4xl font-bold">Welcome to Ground Booking App</h1>
+                <h1 className="text-white text-4xl font-bold">Welcome to Book-A-Ground.com</h1>
             </div>
 
             {images.map((image, index) => (

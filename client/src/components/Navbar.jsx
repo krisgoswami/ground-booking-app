@@ -44,7 +44,7 @@ const Navbar = () => {
 		<nav className=" bg-green-700 p-4">
 			<div className="container mx-auto">
 				<div className="flex justify-between items-center">
-					<div className="text-white font-bold text-xl cursor-pointer" onClick={() => { navigate('/') }}>Ground Booking App</div>
+					<div className="text-white font-bold text-xl cursor-pointer" onClick={() => { navigate('/') }}>Book-A-Ground</div>
 					<div className="block lg:hidden">
 						<button
 							onClick={toggleMenu}
