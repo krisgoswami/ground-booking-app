@@ -31,19 +31,24 @@ const Bookings = () => {
     }, []);
 
     return (
-        <div className='flex flex-wrap justify-start gap-14'>
-            {bookings?.map((booking) =>
-                <div key={booking?._id} className="ml-10 mt-5">
-                    <BookingCard
-                        id={booking?._id}
-                        user={booking?.user}
-                        ground={booking?.ground}
-                        date={booking?.date.slice(0, 10)}
-                        time={booking?.timeSlot}
-                    />
-                </div>
-            )}
-        </div>
+        <div className='h-screen p-8'>
+            < p className=' ml-10 mt-5 mb-5 font-bold text-3xl' >Bookings</ p>
+            <div className='flex flex-wrap justify-start gap-14'>
+                {bookings?.map((booking) =>
+                    <div key={booking?._id} className="ml-10 mt-5">
+                        <BookingCard
+                            id={booking?._id}
+                            user={booking?.user}
+                            ground={booking?.ground}
+                            date={booking?.date.slice(0, 10)}
+                            time={booking?.timeSlot}
+                        />
+                    </div>
+                )}
+                {bookings.length === 0 &&
+                    <p className='ml-10 mt-5 mb-5 font-bold text-xl'>There are no bookings yet.</p>}
+            </div>
+        </div >
     )
 }
 
