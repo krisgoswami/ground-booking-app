@@ -44,12 +44,6 @@ const ImageSlider = () => {
                     className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 ${index === currentImageIndex ? 'opacity-100' : 'opacity-0'}`}
                 />
             ))}
-            {/* <button onClick={handlePrev} className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-black bg-opacity-50 text-white px-4 py-2 rounded-full focus:outline-none">
-                Prev
-            </button>
-            <button onClick={handleNext} className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-black bg-opacity-50 text-white px-4 py-2 rounded-full focus:outline-none">
-                Next
-            </button> */}
         </div>
     );
 };

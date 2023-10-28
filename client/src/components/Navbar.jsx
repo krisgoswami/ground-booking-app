@@ -41,7 +41,7 @@ const Navbar = () => {
 	};
 
 	return (
-		<nav className=" bg-green-700 p-4">
+		<nav className=" bg-gray-900 p-4">
 			<div className="container mx-auto">
 				<div className="flex justify-between items-center">
 					<div className="text-white font-bold text-xl cursor-pointer" onClick={() => { navigate('/') }}>Book-A-Ground</div>
@@ -67,13 +67,13 @@ const Navbar = () => {
 						</button>
 					</div>
 					<div className="lg:flex items-center justify-between text-lg gap-4">
-						{!isLogin && <>
+						{/* {!isLogin && <>
 							<p className="text-white font-medium cursor-pointer" onClick={() => {
 								navigate('/');
 							}}>Home</p>
-							<a href="#" className="text-black">About</a>
-							<a href="#" className="text-black">Contact</a>
-						</>}
+							<a href="#" className="text-white font-medium cursor-pointer">About</a>
+							<a href="#" className="text-white font-medium cursor-pointer">Contact</a>
+						</>} */}
 
 						{isLogin && <>
 							<p className="text-white font-medium cursor-pointer" onClick={() => {
