@@ -2,7 +2,7 @@ import React from 'react'
 
 const Footer = () => {
 	return (
-		<>
+		<div>
 			<div className='flex justify-between bg-gray-900 h-60'>
 				<div className='ml-12 mt-5'>
 					<p className='text-white text-2xl font-bold mb-5'>Book-A-Ground.com</p>
@@ -29,7 +29,7 @@ const Footer = () => {
 					<a href='#' className='mx-2 mr-10 text-white font-medium'>Legal</a>
 				</div>
 			</div>
-		</>
+		</div>
 	)
 }
 

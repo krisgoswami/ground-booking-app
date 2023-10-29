@@ -90,16 +90,16 @@ const Navbar = () => {
 							<button className="bg-white text-black font-bold px-4 py-2 rounded-md" onClick={handleLogin}>Login</button>
 						}
 						{isLogin &&
-							<div className="mx-auto flex items-center justify-center bg-black rounded-md">
+							<div className="mx-auto flex items-center justify-center bg-none rounded-md">
 								<div className="group relative cursor-pointer">
 
-									<div className="flex items-center justify-between space-x-5 bg-white px-2 rounded-sm">
-										<a className="menu-hover py-2 text-base font-medium text-black lg:mx-4" onClick="">
+									<div className="flex items-center justify-between space-x-5 bg-none px-2 rounded-sm">
+										<a className="menu-hover py-2 text-base font-medium text-white lg:mx-4" onClick="">
 											Hi, {user}!
 										</a>
 										<span>
 											<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-												stroke="currentColor" className="h-6 w-6">
+												stroke="white" className="h-6 w-6">
 												<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
 											</svg>
 										</span>

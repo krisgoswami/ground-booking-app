@@ -66,7 +66,7 @@ const Landing = () => {
             </div>
 
             {/* Grounds Section */}
-            <div id="groundContainer" className="flex mx-16 my-8 overflow-x-auto justify-between relative">
+            <div id="groundContainer" className=" flex mx-16 my-8 overflow-x-auto justify-between relative">
                 <div className="flex justify-between my-5" style={{ transform: `translateX(-${scrollPosition}px)`, transition: 'transform 0.3s' }}>
                     {grounds?.map((ground) =>
                         <div key={ground?._id} className="mr-5">
