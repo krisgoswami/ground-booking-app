@@ -102,74 +102,88 @@ const GroundDetails = () => {
 
 	return (
 		<div className="bg-gray-200 h-screen overflow-y-auto p-8">
-			<form onSubmit={bookGround}>
-				<h2 className="text-2xl font-bold mb-4">{inputs.name}</h2>
-				<p className="text-lg mb-2">{inputs.location}</p>
-				<p className="text-gray-700 mb-8 max-w-2xl">{inputs.description}</p>
-				<p className="text-gray-700 mb-8">{inputs.price}</p>
-
-				<div className="mb-8">
-					<label className="block text-gray-700 mb-2">Select Date:</label>
-					<input
-						type="date"
-						value={selectedDate.toISOString().split('T')[0]}
-						onChange={handleDateChange}
-						className='rounded p-2 border border-gray-300'
-					/>
+			<div className='flex p-8'>
+				<div className='w-1/2 pr-8'>
+					<h2 className="text-4xl font-bold mb-12 items-center">{inputs.name}</h2>
+					<div className='flex border border-gray-300 p-5 rounded-lg justify-center mb-4 shadow-md'>
+						<div className="flex flex-row overflow-scroll">
+							{inputs.images?.map((image, index) => (
+								<div key={index} className="">
+									<img
+										src={image}
+										onClick={() => openImageViewer(index)}
+										className="cursor-pointer"
+										alt={`Image ${index + 1}`}
+										style={{ maxWidth: '200px', height: '150px', margin: "2px" }} // Set max width and height for thumbnail
+									/>
+								</div>
+							))}
+						</div>
+					</div>
+					<div className='flex flex-col border border-gray-300 p-6 rounded-lg justify-center mb-4 shadow-md'>
+						<h1 className='text-xl font-semibold mb-2'>About {inputs.name}</h1>
+						<p className="text-gray-700">{inputs.description}</p>
+					</div>
+					<div className='flex flex-col border border-gray-300 p-6 rounded-lg justify-center shadow-md'>
+						<h1 className='text-xl font-semibold mb-2'>Amenities</h1>
+						<p className="text-gray-700">Parking, Washroom</p>
+					</div>
 				</div>
-
-				<div className="mb-8">
-					<label className="block text-gray-700 mb-2">Select Time Slot:</label>
-					<select
-						name='timeSlot'
-						value={selectedTimeSlot}
-						// onChange={e => setSelectedTimeSlot(e.target.value)}
-						onChange={handleTimeSlotChange}
-						className="w-42 border border-gray-300 rounded p-2"
-						disabled={isCurrentDate}
-					>
-						<option value="">Select a Time Slot</option>
-						{inputs.availableSlots?.map((time, index) =>
-							<option key={index} value={time}>{time}</option>
-						)}
-					</select>
-					{isCurrentDate ? <span className='text-red-500 ml-3'>No slots available for selected date</span> : ""}
-				</div>
-
-				<div className="flex flex-row items-center">
-					{inputs.images?.map((image, index) => (
-						<div key={index} className="mb-4">
-							<img
-								src={image}
-								onClick={() => openImageViewer(index)}
-								className="cursor-pointer"
-								alt={`Image ${index + 1}`}
-								style={{ maxWidth: '200px', height: '150px', margin: "2px" }} // Set max width and height for thumbnail
+				<div className='w-1/2 pl-8'>
+					<div className='flex flex-col border border-gray-300 p-6 rounded-lg justify-center mt-24 mb-4 shadow-md'>
+						<h1 className='text-xl font-semibold mb-2'>Location</h1>
+						<p className="text-lg mb-2">{inputs.location}</p>
+					</div>
+					<form onSubmit={bookGround} className='flex flex-col border border-gray-300 p-6 rounded-lg justify-center mb-4 shadow-md'>
+						<div className="mb-8">
+							<label className="block text-gray-700 mb-2">Select Date:</label>
+							<input
+								type="date"
+								value={selectedDate.toISOString().split('T')[0]}
+								onChange={handleDateChange}
+								className='rounded p-2 border border-gray-300'
 							/>
 						</div>
-					))}
+						<div className="mb-8">
+							<label className="block text-gray-700 mb-2">Select Time Slot:</label>
+							<select
+								name='timeSlot'
+								value={selectedTimeSlot}
+								// onChange={e => setSelectedTimeSlot(e.target.value)}
+								onChange={handleTimeSlotChange}
+								className="w-42 border border-gray-300 rounded p-2"
+								disabled={isCurrentDate}
+							>
+								<option value="">Select a Time Slot</option>
+								{inputs.availableSlots?.map((time, index) =>
+									<option key={index} value={time}>{time}</option>
+								)}
+							</select>
+							{isCurrentDate ? <span className='text-red-500 ml-3'>No slots available for selected date</span> : ""}
+						</div>
+						{isLogin && <button
+							type='submit'
+							className='bg-gray-900 text-white px-4 py-2 rounded-lg mt-4 w-40'
+						>
+							Book
+						</button>}
+						{!isLogin && <button
+							onClick={() => { navigate('/login') }}
+							className='bg-gray-900 text-white px-4 py-2 rounded-lg mt-4	 w-40'
+						>
+							Login to book
+						</button>}
+					</form>
 				</div>
-				{isLogin && <button
-					type='submit'
-					className='bg-gray-900 text-white px-4 py-2 rounded-lg mt-8'
-				>
-					Book
-				</button>}
-				{!isLogin && <button
-					onClick={() => { navigate('/login') }}
-					className='bg-gray-900 text-white px-4 py-2 rounded-lg mt-8'
-				>
-					Login to book
-				</button>}
+			</div>
 
-				{isViewerOpen &&
-					<ImageViewer
-						src={inputs.images}
-						currentIndex={currentImage}
-						onClose={closeImageViewer}
-					/>
-				}
-			</form>
+			{isViewerOpen &&
+				<ImageViewer
+					src={inputs.images}
+					currentIndex={currentImage}
+					onClose={closeImageViewer}
+				/>
+			}
 		</div>
 	)
 }
