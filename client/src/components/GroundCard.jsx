@@ -10,7 +10,7 @@ const GroundCard = ({ id, name, location, price, image }) => {
             <img src={image} alt={name} className="w-full h-40 object-cover mb-4" />
             <h3 className="text-xl text-white font-bold mb-2">{name}</h3>
             <p className="text-white mb-2 font-semibold">{location}</p>
-            <p className="text-white mb-2 font-bold">₹ <span className='font-normal'>{price}</span></p>
+            <p className="text-white mb-2 font-bold">₹ <span className='font-normal'>{price}/hr</span></p>
             <button
                 onClick={() => {
                     navigate(`/ground/${id}`);
