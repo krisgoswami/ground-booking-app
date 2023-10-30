@@ -49,7 +49,7 @@ const UpdateGround = () => {
             if (data?.success) {
                 const fetchedGround = data?.ground;
                 setGround(fetchedGround);
-                // console.log(fetchedGround);
+                console.log(fetchedGround);
                 setInputs(prevInputs => ({
                     ...prevInputs,
                     ground_name: fetchedGround.ground_name,
@@ -59,6 +59,8 @@ const UpdateGround = () => {
                     published: fetchedGround.published,
                     availableSlots: fetchedGround.availableSlots,
                     images: fetchedGround.images,
+                    latitude: fetchedGround.coordinates.latitude,
+                    longitude: fetchedGround.coordinates.longitude,
                 }));
             }
         } catch (error) {
@@ -100,6 +102,10 @@ const UpdateGround = () => {
                 formData.append('price', inputs.price);
                 formData.append('location', inputs.location);
                 formData.append('published', inputs.published);
+                // formData.append('latitude', inputs.latitude);
+                // formData.append('longitude', inputs.longitude);
+                formData.append('coordinates[latitude]', inputs.latitude);
+                formData.append('coordinates[longitude]', inputs.longitude);
 
                 // Convert comma-separated URLs to an array of strings
                 const imageUrls = inputs.images?.map(url => url.trim());
@@ -110,7 +116,7 @@ const UpdateGround = () => {
                 });
 
                 //Convert comma-separated timeslots to an array of strings
-                const availableSlots = inputs.availableSlots?.split(',').map(timeslot => timeslot.trim());
+                const availableSlots = inputs.availableSlots?.map(timeslot => timeslot.trim());
 
                 // Append the timeslots to the FormData
                 availableSlots.forEach((timeslot, index) => {
@@ -125,6 +131,7 @@ const UpdateGround = () => {
                 });
                 if (data.success) {
                     toast.success("Ground updated");
+                    console.log(data);
                     navigate(`/ground/${id}`);
                 } else {
                     toast.error("Something went wrong");
@@ -177,6 +184,25 @@ const UpdateGround = () => {
                         value={inputs.location}
                         onChange={handleInputChange}
                         className="w-full border border-gray-300 rounded px-4 py-2"
+                    />
+                </div>
+                <div className="mb-4">
+                    <label className="block text-gray-700 mb-2">Map Co-ordinates</label>
+                    <input
+                        type="text"
+                        name="latitude"
+                        placeholder='Enter Latitude'
+                        value={inputs.latitude}
+                        onChange={handleInputChange}
+                        className="w-1/2 border border-gray-300 rounded px-4 py-2"
+                    />
+                    <input
+                        type="text"
+                        name="longitude"
+                        placeholder='Enter Longitude'
+                        value={inputs.longitude}
+                        onChange={handleInputChange}
+                        className="w-1/2 border border-gray-300 rounded px-4 py-2"
                     />
                 </div>
                 <div className="mb-4">

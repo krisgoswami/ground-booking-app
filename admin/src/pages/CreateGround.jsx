@@ -20,6 +20,10 @@ const CreateGround = () => {
         published: false,
         images: [],
         availableSlots: [],
+        coordinates: {
+            latitude: "",
+            longitude: "",
+        },
     });
 
     //handle publish switch change
@@ -38,11 +42,6 @@ const CreateGround = () => {
         }));
     }
 
-    // const handleFileChange = (e) => {
-    //     const files = Array.from(e.target.files);
-    //     setInputs({ ...inputs, images: files });
-    // };
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!inputs.ground_name || !inputs.description || !inputs.price || !inputs.location) {
@@ -60,6 +59,8 @@ const CreateGround = () => {
                 formData.append('price', inputs.price);
                 formData.append('location', inputs.location);
                 formData.append('published', inputs.published);
+                formData.append('coordinates[latitude]', inputs.latitude);
+                formData.append('coordinates[longitude]', inputs.longitude);
 
                 // Convert comma-separated URLs to an array of strings
                 const imageUrls = inputs.images.split(',').map(url => url.trim());
@@ -118,6 +119,25 @@ const CreateGround = () => {
                         value={inputs.location}
                         onChange={handleInputChange}
                         className="w-full border border-gray-300 rounded px-4 py-2"
+                    />
+                </div>
+                <div className="mb-4">
+                    <label className="block text-gray-700 mb-2">Map Co-ordinates</label>
+                    <input
+                        type="text"
+                        name="latitude"
+                        placeholder='Enter Latitude'
+                        value={inputs.latitude}
+                        onChange={handleInputChange}
+                        className="w-1/2 border border-gray-300 rounded px-4 py-2"
+                    />
+                    <input
+                        type="text"
+                        name="longitude"
+                        placeholder='Enter Longitude'
+                        value={inputs.longitude}
+                        onChange={handleInputChange}
+                        className="w-1/2 border border-gray-300 rounded px-4 py-2"
                     />
                 </div>
                 <div className="mb-4">
