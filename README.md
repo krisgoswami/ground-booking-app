@@ -16,7 +16,7 @@ Book-A-Ground is a web application built using the MERN stack (MongoDB, Express,
 
 ### [Client Side](#)
 - Browse for grounds.
-- View detailed ground information.
+- View detailed ground information with Google maps embedded.
 - Book grounds.
 - View bookings.
   
