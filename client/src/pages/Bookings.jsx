@@ -6,11 +6,12 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 
 const Bookings = () => {
-    const [bookings, setBookings] = useState([]);
+    // const [bookings, setBookings] = useState([]);
     const [upcomingBookings, setUpcomingBookings] = useState([]);
     const [previousBookings, setPreviousBookings] = useState([]);
     const token = localStorage.getItem('token');
     const email = localStorage.getItem('email');
+    const user = localStorage.getItem('username');
 
     const getBookings = async () => {
         try {
@@ -23,7 +24,9 @@ const Bookings = () => {
             if (data.success) {
                 const today = new Date().toISOString().slice(0, 10);
 
-                const upcoming = data.bookings.filter(booking => booking.date >= today);
+                const upcoming = data.bookings
+                    .filter(booking => booking.date >= today)
+                    .sort((a, b) => new Date(a.date) - new Date(b.date)); //sorted dates in ascending order
                 const previous = data.bookings.filter(booking => booking.date < today);
 
                 setUpcomingBookings(upcoming);
@@ -40,7 +43,7 @@ const Bookings = () => {
 
     return (
         <div className='bg-gray-200 h-screen p-8'>
-            <p className=' ml-10 mt-5 mb-10 font-bold text-3xl'>Your Bookings</p>
+            <p className=' ml-10 mt-5 mb-20 font-semibold text-3xl'>Here are your bookings, {user}</p>
             <p className=' ml-10 mt-5 mb-3 font-bold text-xl'>Upcoming Bookings</p>
             <div className='flex flex-wrap justify-start gap-5'>
                 {upcomingBookings?.map((booking) =>
