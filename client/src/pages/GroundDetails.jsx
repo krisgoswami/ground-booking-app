@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import ImageViewer from 'react-simple-image-viewer';
 import toast from 'react-hot-toast';
 import 'react-datepicker/dist/react-datepicker.css';
+import GoogleMap from '../components/GoogleMap';
 
 const GroundDetails = () => {
 
@@ -52,7 +53,11 @@ const GroundDetails = () => {
 					price: data?.ground.price,
 					images: data?.ground.images,
 					availableSlots: data?.ground.availableSlots,
+					latitude: data?.ground.coordinates.latitude,
+					longitude: data?.ground.coordinates.longitude,
 				})
+				console.log(inputs.latitude);
+				console.log(inputs.longitude);
 			}
 		} catch (error) {
 			console.log(error);
@@ -101,11 +106,31 @@ const GroundDetails = () => {
 	}
 
 	return (
-		<div className="bg-gray-200 h-screen overflow-y-auto p-8">
+		<div className="bg-gray-200 h-screen p-6">
 			<div className='flex p-8'>
 				<div className='w-1/2 pr-8'>
 					<h2 className="text-4xl font-bold mb-12 items-center">{inputs.name}</h2>
-					<div className='flex border border-gray-300 p-5 rounded-lg justify-center mb-4 shadow-md'>
+					<div className='bg-gray-100 flex flex-col border border-gray-300 p-6 rounded-lg justify-center mt-4 mb-4 shadow-md'>
+						<h1 className='text-xl font-semibold mb-2'>Location</h1>
+						<p className="text-lg mb-2">{inputs.location}</p>
+						<GoogleMap
+							lat={inputs.latitude}
+							long={inputs.longitude}
+							name={inputs.name}
+						/>
+					</div>
+					<div className='bg-gray-100 flex flex-col border border-gray-300 p-6 rounded-lg justify-center mb-4 shadow-md'>
+						<h1 className='text-xl font-semibold mb-2'>About {inputs.name}</h1>
+						<p className="text-gray-700">{inputs.description}</p>
+					</div>
+					<div className='bg-gray-100 flex flex-col border border-gray-300 p-6 rounded-lg justify-center shadow-md'>
+						<h1 className='text-xl font-semibold mb-2'>Amenities</h1>
+						<p className="text-gray-700">Parking, Washroom</p>
+					</div>
+				</div>
+				<div className='w-1/2 pl-8'>
+					<div className='flex flex-col bg-gray-100 border border-gray-300 p-5 rounded-lg justify-center mb-4 mt-24 shadow-md'>
+						<h1 className='text-xl font-semibold mb-3'>Images</h1>
 						<div className="flex flex-row overflow-scroll">
 							{inputs.images?.map((image, index) => (
 								<div key={index} className="">
@@ -120,21 +145,8 @@ const GroundDetails = () => {
 							))}
 						</div>
 					</div>
-					<div className='flex flex-col border border-gray-300 p-6 rounded-lg justify-center mb-4 shadow-md'>
-						<h1 className='text-xl font-semibold mb-2'>About {inputs.name}</h1>
-						<p className="text-gray-700">{inputs.description}</p>
-					</div>
-					<div className='flex flex-col border border-gray-300 p-6 rounded-lg justify-center shadow-md'>
-						<h1 className='text-xl font-semibold mb-2'>Amenities</h1>
-						<p className="text-gray-700">Parking, Washroom</p>
-					</div>
-				</div>
-				<div className='w-1/2 pl-8'>
-					<div className='flex flex-col border border-gray-300 p-6 rounded-lg justify-center mt-24 mb-4 shadow-md'>
-						<h1 className='text-xl font-semibold mb-2'>Location</h1>
-						<p className="text-lg mb-2">{inputs.location}</p>
-					</div>
-					<form onSubmit={bookGround} className='flex flex-col border border-gray-300 p-6 rounded-lg justify-center mb-4 shadow-md'>
+
+					<form onSubmit={bookGround} className='bg-gray-100 flex flex-col border border-gray-300 p-6 rounded-lg justify-center mb-4 shadow-md'>
 						<div className="mb-8">
 							<label className="block text-gray-700 mb-2">Select Date:</label>
 							<input
@@ -161,12 +173,15 @@ const GroundDetails = () => {
 							</select>
 							{isCurrentDate ? <span className='text-red-500 ml-3'>No slots available for selected date</span> : ""}
 						</div>
-						{isLogin && <button
-							type='submit'
-							className='bg-gray-900 text-white px-4 py-2 rounded-lg mt-4 w-40'
-						>
-							Book
-						</button>}
+						{isLogin && <>
+							<button
+								type='submit'
+								className='bg-gray-900 text-white px-4 py-2 rounded-lg mt-4 w-40 mb-2'
+							>
+								Book
+							</button>
+							<span className='font-semibold'>@ ₹{inputs.price}/hour</span>
+						</>}
 						{!isLogin && <button
 							onClick={() => { navigate('/login') }}
 							className='bg-gray-900 text-white px-4 py-2 rounded-lg mt-4	 w-40'
