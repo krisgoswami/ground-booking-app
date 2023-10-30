@@ -14,17 +14,17 @@ Book-A-Ground is a web application built using the MERN stack (MongoDB, Express,
 
 ## Features
 
-### [Client Side]()
+### [Client Side](#)
 - Browse for grounds.
 - View detailed ground information.
 - Book grounds.
 - View bookings.
   
-![Screenshot (64)](https://github.com/krisgoswami/course-selling-app/assets/91143716/7f6636f8-1ab1-4bf6-82ee-37ceb971f9b7)
+![Screenshot (79)](https://github.com/krisgoswami/ground-booking-app/assets/91143716/7bcd5596-b3a2-48b2-a2a3-c635258e3362)
 
-### [Admin Panel]()
+### [Admin Panel](#)
 - Log in securely with admin credentials.
 - Create and edit ground details.
 - Publish and un-publish grounds which is reflected on the client-side.
 
-![Screenshot (65)](https://github.com/krisgoswami/course-selling-app/assets/91143716/dbfa0035-8fea-46cb-984f-2ac0e876024d)
+![Screenshot (80)](https://github.com/krisgoswami/ground-booking-app/assets/91143716/0bf367df-651d-42d8-9fce-caeddf10b379)
