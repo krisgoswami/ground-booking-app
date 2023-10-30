@@ -241,3 +241,27 @@ export const getBookings = async (req, res) => {
         });
     }
 }
+
+export const getApiKey = async (req, res) => {
+    try {
+        const key = process.env.API_KEY;
+        if (key) {
+            res.status(200).send({
+                success: true,
+                key,
+            });
+        } else {
+            return res.status(400).send({
+                message: "No key found",
+                success: false,
+            });
+        }
+    } catch (error) {
+        console.log(error);
+        return res.status(400).send({
+            message: "No API key found",
+            success: false,
+            error,
+        });
+    }
+}
