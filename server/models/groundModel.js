@@ -23,6 +23,16 @@ const groundSchema = new mongoose.Schema({
         type: Boolean,
         required: [true, "required"],
     },
+    coordinates: {
+        latitude: {
+            type: String,
+            required: [true, "required"],
+        },
+        longitude: {
+            type: String,
+            required: [true, "required"],
+        },
+    },
     availableSlots: [String],
     images: [String],
     bookings: [bookingSchema]
