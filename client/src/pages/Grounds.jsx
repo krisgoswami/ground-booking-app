@@ -24,10 +24,10 @@ const Grounds = () => {
     console.log(grounds);
 
     return (
-        <div className='bg-gray-200 h-screen p-8'>
-            <div className='flex flex-wrap justify-start gap-5'>
+        <div className='bg-gray-200 min-h-screen p-8'>
+            <div className='flex flex-wrap justify-center md:justify-start gap-5'>
                 {grounds?.map((ground) =>
-                    <div key={ground?._id} className="ml-10 mt-10">
+                    <div key={ground?._id} className="mx-2 md:ml-10 mt-10">
                         <GroundCard
                             id={ground?._id}
                             name={ground?.ground_name}

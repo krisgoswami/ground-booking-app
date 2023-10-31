@@ -106,11 +106,11 @@ const GroundDetails = () => {
 	}
 
 	return (
-		<div className="bg-gray-200 min-h-screen p-6">
+		<div className="bg-gray-200 min-h-screen p-4 lg:pt-5">
+			<h2 className="text-2xl lg:text-4xl lg:mt-4 lg:ml-4 font-bold mb-4">{inputs.name}</h2>
 			<div className='flex flex-col lg:flex-row'>
-				<div className='lg:w-1/2 pr-8'>
-					<h2 className="text-2xl lg:text-4xl font-bold mb-4">{inputs.name}</h2>
-					<div className='bg-gray-100 flex flex-col border border-gray-300 p-6 rounded-lg justify-center mt-4 mb-4 shadow-md'>
+				<div className='lg:w-1/2 lg:p-4 mt-8 lg:mt-4'>
+					<div className='bg-gray-100 flex flex-col border border-gray-300 p-6 rounded-lg justify-center mb-4 shadow-md'>
 						<h1 className='text-xl font-semibold mb-2'>Location</h1>
 						<p className="text-lg mb-2">{inputs.location}</p>
 						<GoogleMap
@@ -128,7 +128,7 @@ const GroundDetails = () => {
 						<p className="text-gray-700">Parking, Washroom</p>
 					</div>
 				</div>
-				<div className='lg:w-1/2 lg:pl-8 mt-8 lg:mt-0'>
+				<div className='lg:w-1/2 lg:p-4 mt-8 lg:mt-4'>
 					<div className='flex flex-col bg-gray-100 border border-gray-300 p-5 rounded-lg justify-center mb-4 shadow-md'>
 						<h1 className='text-xl font-semibold mb-3'>Images</h1>
 						<div className="flex flex-row overflow-scroll">
@@ -174,7 +174,7 @@ const GroundDetails = () => {
 						{isLogin && <>
 							<button
 								type='submit'
-								className='bg-gray-900 text-white px-4 py-2 rounded-lg mb-2'
+								className='bg-gray-900 text-white lg:w-32 px-4 py-2 rounded-lg mb-2'
 							>
 								Book
 							</button>
@@ -182,7 +182,7 @@ const GroundDetails = () => {
 						</>}
 						{!isLogin && <button
 							onClick={() => { navigate('/login') }}
-							className='bg-gray-900 text-white px-4 py-2 rounded-lg'
+							className='bg-gray-900 text-white lg:w-32 px-4 py-2 rounded-lg'
 						>
 							Login to book
 						</button>}
