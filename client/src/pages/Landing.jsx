@@ -42,17 +42,9 @@ const Landing = () => {
     };
 
     return (
-        <div>
-            {/* Banner Image Section */}
-            {/* <div className="relative h-96">
-                <div className="absolute inset-0 bg-cover bg-center z-10" style={{ backgroundImage: 'url(banner.jpg)' }}></div>
-                <div className="absolute inset-0 bg-black opacity-50 z-20"></div>
-                <div className="absolute inset-0 flex items-center justify-center z-30">
-                    <h1 className="text-white text-4xl font-bold">Welcome to Ground Booking App</h1>
-                </div>
-            </div> */}
+        <div className="relative">
 
-            {/* Image slider */}
+            {/* Image Slider */}
             <ImageSlider />
 
             {/* Scroll Buttons */}
@@ -66,7 +58,7 @@ const Landing = () => {
             </div>
 
             {/* Grounds Section */}
-            <div id="groundContainer" className=" flex mx-16 my-8 overflow-x-auto justify-between relative">
+            <div id="groundContainer" className="flex mx-4 sm:mx-16 my-8 overflow-x-auto justify-between relative">
                 <div className="flex justify-between my-5" style={{ transform: `translateX(-${scrollPosition}px)`, transition: 'transform 0.3s' }}>
                     {grounds?.map((ground) =>
                         <div key={ground?._id} className="mr-5">

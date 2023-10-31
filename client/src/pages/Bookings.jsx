@@ -42,12 +42,13 @@ const Bookings = () => {
     }, []);
 
     return (
-        <div className='bg-gray-200 h-screen p-8'>
-            <p className=' ml-10 mt-5 mb-20 font-semibold text-3xl'>Here are your bookings, {user}</p>
-            <p className=' ml-10 mt-5 mb-3 font-bold text-xl'>Upcoming Bookings</p>
-            <div className='flex flex-wrap justify-start gap-5'>
+        <div className='bg-gray-200 min-h-screen p-8'>
+            <p className='ml-5 md:ml-10 mt-5 mb-10 font-semibold text-3xl text-center md:text-left'>Here are your bookings, {user}</p>
+
+            <div className='mx-2 md:ml-10 mt-5 mb-3 font-bold text-xl text-center md:text-left'>Upcoming Bookings</div>
+            <div className='flex flex-col md:flex-row justify-center md:justify-start gap-5'>
                 {upcomingBookings?.map((booking) =>
-                    <div key={booking?._id} className="ml-10 mt-5 mb-16">
+                    <div key={booking?._id} className="ml-5 md:ml-10 mt-5 mb-16">
                         <BookingCard
                             id={booking?._id}
                             ground={booking?.ground}
@@ -57,12 +58,13 @@ const Bookings = () => {
                     </div>
                 )}
                 {upcomingBookings.length === 0 &&
-                    <p className='ml-10 mt-5 mb-16 font-light text-xl'>You don't have any upcoming bookings.</p>}
+                    <p className='ml-5 md:ml-10 mt-5 mb-16 font-light text-xl text-center md:text-left'>You don't have any upcoming bookings.</p>}
             </div>
-            <p className=' ml-10 mt-5 mb-3 font-bold text-xl'>Previous Bookings</p>
-            <div className='flex flex-wrap justify-start gap-5'>
+
+            <div className='mx-2 md:ml-10 mt-5 mb-3 font-bold text-xl text-center md:text-left'>Previous Bookings</div>
+            <div className='flex flex-col md:flex-row justify-center md:justify-start gap-5'>
                 {previousBookings?.map((booking) =>
-                    <div key={booking?._id} className="ml-10 mt-5">
+                    <div key={booking?._id} className="ml-5 md:ml-10 mt-5">
                         <BookingCard
                             id={booking?._id}
                             ground={booking?.ground}
@@ -72,7 +74,7 @@ const Bookings = () => {
                     </div>
                 )}
                 {previousBookings.length === 0 &&
-                    <p className='ml-10 mt-5 mb-5 font-light text-xl'>You don't have any upcoming bookings.</p>}
+                    <p className='ml-5 md:ml-10 mt-5 mb-5 font-light text-xl text-center md:text-left'>You don't have any previous bookings.</p>}
             </div>
         </div>
     )
