@@ -2,6 +2,8 @@
 
 Book-A-Ground is a web application built using the MERN stack (MongoDB, Express, React, Node.js) with Tailwind CSS for a sleek user interface. Book-A-Ground includes an admin panel to manage ground content seamlessly.
 
+![Screenshot (79)](https://github.com/krisgoswami/ground-booking-app/assets/91143716/7bcd5596-b3a2-48b2-a2a3-c635258e3362)
+
 ## Technologies Used
 
 - **MongoDB**
@@ -20,7 +22,6 @@ Book-A-Ground is a web application built using the MERN stack (MongoDB, Express,
 - Book grounds.
 - View bookings.
   
-![Screenshot (79)](https://github.com/krisgoswami/ground-booking-app/assets/91143716/7bcd5596-b3a2-48b2-a2a3-c635258e3362)
 ![Screenshot (82)](https://github.com/krisgoswami/ground-booking-app/assets/91143716/3b1009f6-f35e-4fbc-ba0b-f18bc9ec1edb)
 
 ### [Admin Panel](#)
