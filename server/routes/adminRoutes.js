@@ -1,7 +1,14 @@
 import express from "express";
-import { adminLogin, createAdmin, createGround, deleteGround, fetchGroundById, getAllGrounds, getBookings, updateGround } from "../controllers/adminController.js";
+
 import { authenticateJWT } from "../utils/jwtAuth.js";
-// import { uploadImages } from "../utils/handleImgUpload.js";
+import { createAdmin } from "../controllers/Admin/createAdmin.js";
+import { adminLogin } from "../controllers/Admin/adminLogin.js";
+import { createGround } from "../controllers/Admin/createGround.js";
+import { updateGround } from "../controllers/Admin/updateGround.js";
+import { getAllGrounds } from "../controllers/Admin/getAllGrounds.js";
+import { fetchGroundById } from "../controllers/Admin/fetchGroundById.js";
+import { deleteGround } from "../controllers/Admin/deleteGround.js";
+import { getBookings } from "../controllers/Admin/getBookings.js";
 
 
 const router = express.Router();
